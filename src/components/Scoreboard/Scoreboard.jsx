@@ -86,7 +86,6 @@ const Scoreboard = () => {
   const titleRef = useRef(null);
   
   useEffect(() => {
-    // Animate the title with a futuristic effect
     gsap.fromTo(
       titleRef.current,
       { 
@@ -128,7 +127,6 @@ const Scoreboard = () => {
       }
     );
     
-    // Animate the score bars
     gsap.fromTo(
       `.${styles.scoreBar}`,
       { width: 0 },
