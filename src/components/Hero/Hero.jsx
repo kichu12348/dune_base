@@ -45,57 +45,52 @@ const Hero = () => {
   };
   
   useEffect(() => {
+    // Set initial states explicitly to prevent flashing
+    gsap.set(`.${styles.heroContent}`, { opacity: 0 });
+    gsap.set(`.${styles.logoLetter}`, { 
+      opacity: 0, 
+      y: 50, 
+      rotationX: -90,
+      filter: 'blur(10px)'
+    });
+    gsap.set(`.${styles.tagline}`, { opacity: 0, y: 30, filter: 'blur(5px)' });
+    gsap.set(`.${styles.exploreBtn}`, { opacity: 0, y: 20 });
+    gsap.set(`.${styles.scrollIndicator}`, { opacity: 0, y: -20 });
+    
+    // Use a slight delay to ensure DOM is ready
+    const tl = gsap.timeline({delay: 0.1});
+    
     // Animation timeline for initial animations
-    const tl = gsap.timeline();
-    
-    // Initial load animations
-    tl.fromTo(
-      `.${styles.heroContent}`,
-      { opacity: 0 },
-      { opacity: 1, duration: 1.5 }
-    );
-    
-    // Main logo animation
-    tl.fromTo(
-      `.${styles.logoLetter}`, 
-      { 
-        opacity: 0,
-        y: 50,
-        rotationX: -90,
-        filter: 'blur(10px)'
-      },
-      {
-        opacity: 1,
-        y: 0,
-        rotationX: 0,
-        filter: 'blur(0px)',
-        stagger: 0.15,
-        duration: 1.2,
-        ease: "power3.out"
-      },
-      "-=0.8"
-    );
-    
-    // Secondary content animations
-    tl.fromTo(
-      `.${styles.tagline}`,
-      { opacity: 0, y: 30, filter: 'blur(5px)' },
-      { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1 },
-      "-=0.7"
-    )
-    .fromTo(
-      `.${styles.exploreBtn}`,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.8 },
-      "-=0.5"
-    )
-    .fromTo(
-      `.${styles.scrollIndicator}`,
-      { opacity: 0, y: -20 },
-      { opacity: 0.7, y: 0, duration: 0.8 },
-      "-=0.3"
-    );
-    
+    tl.to(`.${styles.heroContent}`, { opacity: 1, duration: 1.5 })
+      .to(
+        `.${styles.logoLetter}`, 
+        {
+          opacity: 1,
+          y: 0,
+          rotationX: 0,
+          filter: 'blur(0px)',
+          stagger: 0.15,
+          duration: 1.2,
+          ease: "power3.out"
+        },
+        "-=0.8"
+      )
+      .to(
+        `.${styles.tagline}`,
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1 },
+        "-=0.7"
+      )
+      .to(
+        `.${styles.exploreBtn}`,
+        { opacity: 1, y: 0, duration: 0.8 },
+        "-=0.5"
+      )
+      .to(
+        `.${styles.scrollIndicator}`,
+        { opacity: 0.7, y: 0, duration: 0.8 },
+        "-=0.3"
+      );
+
     // Glitching letters effect
     const letters = document.querySelectorAll(`.${styles.logoLetter}`);
     letters.forEach(letter => {

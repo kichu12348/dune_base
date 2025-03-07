@@ -50,6 +50,7 @@
   margin-bottom: 16px;
   background: linear-gradient(to right, var(--sand-light), var(--sand-dark));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 2px 20px rgba(230, 210, 169, 0.2);
   letter-spacing: 2px;
@@ -63,13 +64,16 @@
   font-style: italic;
 }
 
+.titleContainer h2, .titleContainer p {
+  opacity: 0; 
+}
+
 .housesGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 40px;
 }
 
-/* House Card Design */
 .houseCard {
   position: relative;
   background: rgba(14, 17, 17, 0.85);
@@ -85,6 +89,8 @@
   transform: perspective(1000px) rotateX(0deg);
   transform-style: preserve-3d;
   border: 1px solid rgba(var(--house-color), 0.1);
+  opacity: 0; /* Hide until GSAP animations start */
+  transform: translateY(100px) perspective(1000px) rotateX(-15deg);
 }
 
 .houseCard::before {
@@ -114,7 +120,7 @@
   z-index: 20;
 }
 
-/* Card Glow Effect */
+
 .cardGlow {
   position: absolute;
   top: 0;
@@ -145,7 +151,7 @@
   opacity: 0.2;
 }
 
-/* Top Section of Card */
+
 .houseTop {
   position: relative;
   z-index: 3;
@@ -210,7 +216,7 @@
   margin-bottom: 15px;
 }
 
-/* Bottom Section of Card */
+
 .houseBottom {
   position: relative;
   z-index: 3;
@@ -251,7 +257,7 @@
   color: var(--house-color);
 }
 
-/* Action Button */
+
 .houseActions {
   text-align: center;
 }
@@ -302,7 +308,6 @@
   left: 100%;
 }
 
-/* Media queries for responsive design */
 @media (max-width: 992px) {
   .housesGrid {
     grid-template-columns: repeat(2, 1fr);
@@ -331,7 +336,7 @@
 
 @media (max-width: 480px) {
   .houseCard {
-    height: 460px;
+    min-height: 600px;
   }
   
   .titleContainer h2 {

@@ -11,7 +11,6 @@ const Footer = () => {
   const quoteRef = useRef(null);
   
   useEffect(() => {
-    // Animate the quote
     gsap.fromTo(
       quoteRef.current,
       { opacity: 0, y: 30 },
@@ -27,7 +26,6 @@ const Footer = () => {
       }
     );
     
-    // Animate social icons
     gsap.fromTo(
       `.${styles.socialIcon}`,
       { scale: 0, opacity: 0 },
@@ -45,7 +43,6 @@ const Footer = () => {
       }
     );
     
-    // Add subtle parallax for footer elements
     gsap.to(`.${styles.quoteSection}`, {
       yPercent: -15,
       ease: "none",
@@ -91,7 +88,7 @@ const Footer = () => {
           
           <div className={styles.footerColumn}>
             <h4>Festival Dates</h4>
-            <p>October 15-25, 2023</p>
+            <p>March 21 2025</p>
             <p>Arrakeen Grand Arena</p>
           </div>
           
@@ -114,6 +111,9 @@ const Footer = () => {
             <p>© 2025 UTSAV Arts Festival. All rights reserved.</p>
             <p className={styles.credit}>
               The spice must flow.
+            </p>
+            <p className={styles.credit}>
+              Made With ❤️ by S4 E
             </p>
           </div>
         </div>

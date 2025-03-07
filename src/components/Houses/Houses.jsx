@@ -64,14 +64,27 @@ const Houses = () => {
   };
 
   useEffect(() => {
-    // Create timeline for section intro
+    gsap.set(titleRef.current.querySelector('h2'), { opacity: 0, y: 50 });
+    gsap.set(titleRef.current.querySelector('p'), { opacity: 0, y: 30 });
+    
+    housesRef.current.forEach(house => {
+      if (house) {
+        gsap.set(house, { 
+          y: 100, 
+          opacity: 0, 
+          rotateX: -15 
+        });
+      }
+    });
+    
     const introTl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
         start: "top bottom-=100",
         end: "top center",
         toggleActions: "play none none reverse"
-      }
+      },
+      delay: 0.1
     });
     
     introTl
@@ -84,8 +97,7 @@ const Houses = () => {
         { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
         "-=0.8"
       );
-    
-    // Animate each house card with a staggered effect
+
     housesRef.current.forEach((house, index) => {
       gsap.fromTo(house,
         { 
@@ -109,8 +121,7 @@ const Houses = () => {
         }
       );
     });
-    
-    // Parallax effect for section background
+
     gsap.to(`.${styles.duneBackground}`, {
       backgroundPositionY: "30%",
       ease: "none",
@@ -122,7 +133,7 @@ const Houses = () => {
       }
     });
     
-    // Parallax for the sand overlay
+    // Parallax for the sand overlay meh
     gsap.to(`.${styles.sandOverlay}`, {
       backgroundPositionY: "10%",
       ease: "none",

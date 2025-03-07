@@ -10,11 +10,14 @@ import Footer from './components/Footer/Footer';
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [contentReady, setContentReady] = useState(false);
 
   useEffect(() => {
-    // Simulate loading time
     const timer = setTimeout(() => {
       setLoading(false);
+      setTimeout(() => {
+        setContentReady(true);
+      }, 100);
     }, 3000);
 
     return () => clearTimeout(timer);
@@ -25,7 +28,7 @@ function App() {
       {loading ? (
         <Preloader />
       ) : (
-        <div className="app-container">
+        <div className={`app-container ${contentReady ? 'content-visible' : ''}`}>
           <Navbar />
           <main>
             <Hero />
