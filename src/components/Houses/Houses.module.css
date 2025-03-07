@@ -1,0 +1,344 @@
+.houses {
+  position: relative;
+  background-color: var(--deep-desert);
+  min-height: 100vh;
+  padding: 120px 0 150px;
+  overflow: hidden;
+}
+
+.duneBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/dune-landscape.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  z-index: 1;
+  will-change: transform;
+}
+
+.sandOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/sand-texture.jpg');
+  opacity: 0.08;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 3;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.titleContainer {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.titleContainer h2 {
+  font-size: 3.5rem;
+  margin-bottom: 16px;
+  background: linear-gradient(to right, var(--sand-light), var(--sand-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 20px rgba(230, 210, 169, 0.2);
+  letter-spacing: 2px;
+}
+
+.titleContainer p {
+  font-size: 1.2rem;
+  color: var(--sand-dark);
+  max-width: 600px;
+  margin: 0 auto;
+  font-style: italic;
+}
+
+.housesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+}
+
+/* House Card Design */
+.houseCard {
+  position: relative;
+  background: rgba(14, 17, 17, 0.85);
+  height: 480px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  will-change: transform;
+  transform: perspective(1000px) rotateX(0deg);
+  transform-style: preserve-3d;
+  border: 1px solid rgba(var(--house-color), 0.1);
+}
+
+.houseCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.4)
+  );
+  z-index: 1;
+}
+
+.houseCard:hover {
+  transform: perspective(1000px) rotateX(5deg) translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 25px var(--house-color);
+  z-index: 10;
+}
+
+.active {
+  transform: perspective(1000px) rotateX(5deg) translateY(-15px) scale(1.05);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 30px var(--house-color);
+  z-index: 20;
+}
+
+/* Card Glow Effect */
+.cardGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--house-color);
+  opacity: 0.7;
+  box-shadow: 0 0 20px var(--house-color);
+  z-index: 2;
+}
+
+.cardDecoration {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.01) 0%,
+    transparent 70%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 1;
+  opacity: 0.2;
+}
+
+/* Top Section of Card */
+.houseTop {
+  position: relative;
+  z-index: 3;
+  padding: 30px 25px 20px;
+  text-align: center;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3),
+    transparent
+  );
+}
+
+.houseIconContainer {
+  background-color: var(--house-color);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), 0 0 15px var(--house-color);
+  transition: all 0.4s ease;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.houseCard:hover .houseIconContainer,
+.active .houseIconContainer {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--house-color);
+}
+
+.houseIcon {
+  color: var(--night-sky);
+  transition: all 0.4s ease;
+}
+
+.houseName {
+  font-size: 1.8rem;
+  font-family: 'Cinzel', serif;
+  color: var(--house-color);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.houseDivider {
+  width: 60px;
+  height: 2px;
+  background-color: var(--house-color);
+  margin: 15px auto;
+  box-shadow: 0 0 8px var(--house-color);
+}
+
+.houseTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  color: var(--sand-light);
+  font-style: italic;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+/* Bottom Section of Card */
+.houseBottom {
+  position: relative;
+  z-index: 3;
+  padding: 20px 25px 30px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.houseDescription {
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.houseDescription p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--sand-dark);
+  text-align: center;
+}
+
+.houseStats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  padding: 0 10px;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--sand-light);
+  font-size: 0.8rem;
+}
+
+.statItem svg {
+  color: var(--house-color);
+}
+
+/* Action Button */
+.houseActions {
+  text-align: center;
+}
+
+.joinBtn {
+  padding: 10px 25px;
+  background: transparent;
+  border: 1px solid var(--house-color);
+  color: var(--house-color);
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.joinBtn span {
+  position: relative;
+  z-index: 1;
+}
+
+.btnGlow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+  z-index: 0;
+}
+
+.joinBtn:hover {
+  background-color: var(--house-color);
+  color: var(--night-sky);
+  box-shadow: 0 0 15px var(--house-color);
+}
+
+.joinBtn:hover .btnGlow {
+  left: 100%;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 992px) {
+  .housesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .housesGrid {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+  
+  .titleContainer h2 {
+    font-size: 2.8rem;
+  }
+
+  .houses {
+    padding: 100px 0 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .houseCard {
+    height: 460px;
+  }
+  
+  .titleContainer h2 {
+    font-size: 2.3rem;
+  }
+  
+  .houseName {
+    font-size: 1.6rem;
+  }
+}

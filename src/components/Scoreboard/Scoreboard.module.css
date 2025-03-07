@@ -1,0 +1,313 @@
+.scoreboard {
+  background-color: var(--night-sky);
+  padding: 100px 5%;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.gridOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(74, 146, 168, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 146, 168, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 10px;
+  color: var(--sand-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titlePrefix {
+  font-size: 1.2rem;
+  color: var(--tech-blue);
+  letter-spacing: 5px;
+  margin-bottom: 10px;
+  font-weight: 400;
+  text-shadow: 0 0 10px var(--tech-glow);
+}
+
+.titleMain {
+  font-size: 3.2rem;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--sand-dark);
+  margin-bottom: 60px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'Cinzel', serif;
+}
+
+.rankingsContainer {
+  background-color: rgba(14, 17, 17, 0.8);
+  border: 1px solid rgba(74, 146, 168, 0.3);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 
+              inset 0 0 20px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.rankingRow {
+  display: grid;
+  grid-template-columns: 50px 60px 1fr 3fr 80px 120px;
+  align-items: center;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 4px;
+  background: rgba(16, 18, 19, 0.7);
+  border-left: 3px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.rankingRow:hover {
+  background: rgba(20, 25, 27, 0.9);
+  transform: translateX(5px);
+  border-left-color: var(--tech-blue);
+}
+
+.rankingRow:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(74, 146, 168, 0.1), transparent);
+  pointer-events: none;
+}
+
+.rankPosition {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  color: var(--sand-light);
+  position: relative;
+}
+
+.rankPosition svg {
+  color: var(--spice);
+  filter: drop-shadow(0 0 5px rgba(205, 108, 36, 0.5));
+}
+
+.houseIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--night-sky);
+}
+
+.houseName {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--sand-light);
+  padding-left: 15px;
+}
+
+.scoreBarContainer {
+  height: 12px;
+  background-color: rgba(45, 33, 19, 0.5);
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 0 20px;
+  border: 1px solid rgba(196, 170, 118, 0.1);
+}
+
+.scoreBar {
+  height: 100%;
+  width: 0;
+  border-radius: 20px;
+  position: relative;
+  transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.scoreBar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+              transparent, 
+              rgba(255, 255, 255, 0.1), 
+              transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.scoreDisplay {
+  text-align: right;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+.scoreValue {
+  position: relative;
+}
+
+.achievements {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.achievementIcon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--spice);
+}
+
+.dataInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--sand-dark);
+  font-size: 0.9rem;
+}
+
+.lastUpdated {
+  display: flex;
+  align-items: center;
+}
+
+.blinkingDot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--tech-blue);
+  border-radius: 50%;
+  margin-right: 10px;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 5px var(--tech-blue);
+  }
+  50% {
+    opacity: 0.3;
+    box-shadow: none;
+  }
+}
+
+.detailsBtn {
+  padding: 8px 15px;
+  background-color: transparent;
+  border: 1px solid var(--tech-blue);
+  color: var(--tech-blue);
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 3px;
+}
+
+.detailsBtn:hover {
+  background-color: rgba(74, 146, 168, 0.2);
+  box-shadow: 0 0 10px var(--tech-glow);
+}
+
+/* Media queries for responsive design */
+@media (max-width: 992px) {
+  .rankingRow {
+    grid-template-columns: 40px 50px 1fr 2fr 80px auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .rankingRow {
+    grid-template-columns: 30px 40px 1fr 1.5fr 70px;
+    gap: 5px;
+    padding: 10px;
+  }
+  
+  .achievements {
+    display: none;
+  }
+  
+  .houseIcon {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .houseName {
+    font-size: 1rem;
+    padding-left: 5px;
+  }
+  
+  .scoreDisplay {
+    font-size: 1.1rem;
+  }
+  
+  .titleMain {
+    font-size: 2.5rem;
+  }
+  
+  .dataInfo {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rankingRow {
+    grid-template-columns: 20px 30px 1fr 1fr;
+    padding: 10px 5px;
+  }
+  
+  .scoreBarContainer {
+    display: none;
+  }
+  
+  .houseName {
+    font-size: 0.9rem;
+  }
+}

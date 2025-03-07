@@ -1,0 +1,373 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  perspective: 1200px;
+  will-change: transform;
+}
+
+.parallaxContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(2px 2px at 40px 60px, #ccc, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 20px 50px, white, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 30px 100px, #e6d2a9, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 40px 60px, #998, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 110px 90px, #ddd, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 190px 150px, #bbb, rgba(0,0,0,0));
+  background-size: 250px 250px;
+  opacity: 0.3;
+  z-index: -3;
+  animation: slowDrift 120s linear infinite;
+  will-change: transform;
+}
+
+@keyframes slowDrift {
+  from { background-position: 0 0; }
+  to { background-position: 250px 250px; }
+}
+
+.cloudLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/dust-clouds.png');
+  background-size: 120% 120%;
+  background-position: center;
+  opacity: 0.15;
+  z-index: -2;
+  animation: cloudFloat 100s linear infinite;
+  will-change: transform;
+}
+
+@keyframes cloudFloat {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 10% 0%; }
+  100% { background-position: 0% 0%; }
+}
+
+.parallaxBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120%;  /* Extra height to accommodate parallax movement */
+  background-image: url('/images/dune-desert.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+  filter: contrast(1.1) saturate(1.1);
+  will-change: transform;
+}
+
+.dunesSilhouette {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 30%;  /* Extra height to accommodate parallax movement */
+  background-image: url('/images/dunes-silhouette.png');
+  background-size: cover;
+  background-position: bottom center;
+  z-index: -1;
+  opacity: 0.8;
+  will-change: transform;
+}
+
+/* Sand particles */
+.sandParticlesContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.sandParticle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: var(--sand-light);
+  border-radius: 50%;
+  opacity: 0.4;
+  box-shadow: 0 0 3px var(--sand-light);
+  pointer-events: none;
+}
+
+/* Content styling */
+.heroContent {
+  text-align: center;
+  z-index: 2;
+  padding: 20px;
+  position: relative;
+  will-change: transform, opacity;
+}
+
+.logoContainer {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.logo {
+  font-size: 6rem;
+  color: var(--sand-light);
+  perspective: 1000px;
+  position: relative;
+  z-index: 2;
+}
+
+.logoLetter {
+  display: inline-block;
+  transform-style: preserve-3d;
+  margin: 0 5px;
+  opacity: 0;
+  text-shadow: 0 0 10px rgba(230, 210, 169, 0.5);
+  position: relative;
+}
+
+.logoLetter::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--spice);
+  transform: scaleX(0);
+  transition: transform 0.3s ease-out;
+  transform-origin: right;
+}
+
+.logoLetter:hover::after,
+.logoLetter:focus::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.glowEffect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 100px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(74, 146, 168, 0.2) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  filter: blur(15px);
+  z-index: 1;
+  opacity: 0.6;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.tagline {
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+  color: var(--sand-dark);
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  position: relative;
+}
+
+/* Enhanced button styles */
+.exploreBtn {
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-family: 'Cinzel', serif;
+  background-color: transparent;
+  border: 2px solid var(--spice);
+  color: var(--spice);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.exploreBtnText {
+  position: relative;
+  z-index: 2;
+}
+
+.exploreBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+  z-index: 1;
+}
+
+.exploreBtn:hover::before,
+.exploreBtn:focus::before {
+  left: 100%;
+}
+
+.exploreBtn:hover,
+.exploreBtn:focus {
+  background-color: var(--spice);
+  color: var(--night-sky);
+  box-shadow: 0 0 20px rgba(205, 108, 36, 0.6);
+  outline: none;
+}
+
+.btnGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 250%;
+  height: 300%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(205, 108, 36, 0.5) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.5s ease;
+  z-index: 0;
+}
+
+.exploreBtn:hover .btnGlow,
+.exploreBtn:focus .btnGlow {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Scroll indicator */
+.scrollIndicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  color: var(--sand-light);
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.scrollIndicator:hover,
+.scrollIndicator:focus {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.05);
+  color: var(--spice);
+  outline: none;
+}
+
+.scrollText {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+  font-family: 'Cinzel', serif;
+}
+
+.scrollIndicatorIcon {
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* Overlays */
+.sandOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/sand-texture.png');
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.atmosphericOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(14, 17, 17, 0.6) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .logo {
+    font-size: 4rem;
+  }
+  
+  .tagline {
+    font-size: 1.2rem;
+  }
+  
+  .logoLetter {
+    margin: 0 2px;
+  }
+  
+  .glowEffect {
+    width: 200px;
+  }
+  
+  .scrollIndicator {
+    bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 3rem;
+  }
+  
+  .tagline {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+  
+  .scrollIndicator {
+    bottom: 20px;
+  }
+}
