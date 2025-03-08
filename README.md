@@ -1,6 +1,6 @@
 # UTSAV Arts Festival - Interactive Experience
 
-![UTSAV Festival](/banner/banner.jpg)
+![UTSAV Festival](/banner/banner.jpeg)
 
 > **Note**: This project represents my best work so far, combining advanced animation techniques, creative design, and responsive implementation.
 
