@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronDown } from 'lucide-react';
 import styles from './Hero.module.css';
+import PyramidScene from './PyramidScene';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -225,6 +226,9 @@ const Hero = () => {
             <div key={i} className={styles.sandParticle}></div>
           ))}
         </div>
+
+        {/* 3D Pyramid positioned to the right of the content */}
+        <PyramidScene position="right" />
       </div>
       
       <div className={styles.heroContent}>
