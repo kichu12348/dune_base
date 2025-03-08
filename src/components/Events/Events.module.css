@@ -1,24 +1,162 @@
 .eventsSection {
-  background-color: var(--night-sky);
+  /* More gradual gradient starting with night-sky */
+  background: linear-gradient(to bottom, 
+    var(--night-sky) 20%, 
+    var(--deep-desert) 45%, 
+    var(--deep-desert) 85%,
+    var(--night-sky) 100%); 
   padding: 120px 5% 100px;
+  padding-top: 300px;
   position: relative;
   overflow: hidden;
   min-height: 100vh;
+  z-index: 0;
 }
 
-.sandBackground {
+.topConnector {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300px; 
+  background: linear-gradient(
+    to bottom,
+    var(--night-sky) 0%,
+    rgba(14, 17, 17, 0.9) 20%,
+    rgba(14, 17, 17, 0.7) 40%,
+    rgba(14, 17, 17, 0.5) 60%,
+    rgba(14, 17, 17, 0.2) 80%,
+    transparent 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.backgroundDecoration {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/images/sand-texture.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  background-size: cover;
-  opacity: 0.03;
   z-index: 0;
+  overflow: hidden;
+}
+
+.gridPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(196, 170, 118, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196, 170, 118, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.5;
+}
+
+.decorCircle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(196, 170, 118, 0.1);
+  opacity: 0.2;
+}
+
+.circle1 {
+  width: 400px;
+  height: 400px;
+  top: -100px;
+  left: -100px;
+}
+
+.circle2 {
+  width: 600px;
+  height: 600px;
+  bottom: -200px;
+  right: -200px;
+  border-width: 2px;
+}
+
+.circle3 {
+  width: 300px;
+  height: 300px;
+  top: 40%;
+  left: 60%;
+}
+
+.dustParticle {
+  position: absolute;
+  background-color: #c29b45;
+  border-radius: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+
+.diagonalLine {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(196, 170, 118, 0.2), transparent);
+  transform: rotate(-45deg);
+  transform-origin: left;
+}
+
+.line1 {
+  width: 100%;
+  top: 20%;
+  left: 0;
+}
+
+.line2 {
+  width: 80%;
+  top: 50%;
+  left: 30%;
+}
+
+.line3 {
+  width: 60%;
+  top: 80%;
+  right: -10%;
+  transform: rotate(45deg);
+}
+
+.ornament {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  opacity: 0.2;
+  filter: invert(65%) sepia(19%) saturate(723%) hue-rotate(4deg) brightness(92%) contrast(84%);
+}
+
+.ornamentTop {
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ornamentBottom {
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+.ornamentLeft {
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+.ornamentRight {
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+@keyframes floatDust {
+  0% { transform: translate(0, 0); opacity: 0; }
+  25% { opacity: 0.3; }
+  75% { opacity: 0.3; }
+  100% { transform: translate(var(--x-move), var(--y-move)); opacity: 0; }
 }
 
 .container {
@@ -57,7 +195,7 @@
 }
 
 .eventCard {
-  height: 450px; /* Increased height to accommodate content */
+  height: 450px;
   perspective: 1000px;
 }
 
@@ -96,8 +234,8 @@
   padding: 30px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Adjusts spacing to prevent overlap */
-  overflow-y: auto; /* Allows scrolling if content is too long */
+  justify-content: space-between;
+  overflow-y: auto;
 }
 
 .eventImageContainer {
@@ -115,7 +253,6 @@
   transition: transform 0.5s ease;
 }
 
-/* Apply different background colors to simulate images */
 .eventCard:nth-child(1) .eventImage { background-color: var(--spice); opacity: 0.8; }
 .eventCard:nth-child(2) .eventImage { background-color: var(--house-nyx); opacity: 0.8; }
 .eventCard:nth-child(3) .eventImage { background-color: var(--house-ignis); opacity: 0.8; }
@@ -147,7 +284,7 @@
   font-size: 0.95rem;
   line-height: 1.6;
   margin-bottom: 20px;
-  flex-grow: 1; /* Allow description to take available space */
+  flex-grow: 1;
 }
 
 .eventHost {
@@ -167,7 +304,7 @@
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: auto; /* Pushes button to bottom */
+  margin-top: auto; 
 }
 
 .viewMoreContainer {

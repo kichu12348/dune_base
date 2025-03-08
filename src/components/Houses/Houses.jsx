@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Sun, Moon, Wind, Flame, Users, Award, Star } from 'lucide-react';
+import { Sun, Moon, Wind, Flame, Users, Trophy, Star } from 'lucide-react';
 import styles from './Houses.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -57,85 +57,93 @@ const Houses = () => {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const housesRef = useRef([]);
-  const [activeHouse, setActiveHouse] = useState(null);
-
-  const handleHouseClick = (id) => {
-    setActiveHouse(activeHouse === id ? null : id);
-  };
-
+  
   useEffect(() => {
-    gsap.set(titleRef.current.querySelector('h2'), { opacity: 0, y: 50 });
-    gsap.set(titleRef.current.querySelector('p'), { opacity: 0, y: 30 });
-    
-    housesRef.current.forEach(house => {
-      if (house) {
-        gsap.set(house, { 
-          y: 100, 
-          opacity: 0, 
-          rotateX: -15 
-        });
+    const createParticles = () => {
+      const container = sectionRef.current;
+      for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = styles.particle;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.bottom = `${Math.random() * 100}%`;
+        const xMove = (Math.random() - 0.5) * 200;
+        const yMove = -Math.random() * 150 - 50;
+        particle.style.setProperty('--x-move', `${xMove}px`);
+        particle.style.setProperty('--y-move', `${yMove}px`);
+        particle.style.animation = `${styles.float} ${Math.random() * 10 + 15}s infinite ease-out ${Math.random() * 10}s`;
+        
+        container.appendChild(particle);
       }
-    });
+    };
     
-    const introTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top bottom-=100",
-        end: "top center",
-        toggleActions: "play none none reverse"
-      },
-      delay: 0.1
-    });
+    createParticles();
     
-    introTl
-      .fromTo(titleRef.current.querySelector('h2'), 
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }
-      )
-      .fromTo(titleRef.current.querySelector('p'),
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
-        "-=0.8"
-      );
-
-    housesRef.current.forEach((house, index) => {
-      gsap.fromTo(house,
-        { 
-          y: 100, 
-          opacity: 0,
-          rotateX: -15
-        },
-        { 
-          y: 0, 
-          opacity: 1,
-          rotateX: 0,
-          duration: 1.2,
-          ease: "power3.out",
-          delay: 0.2 * index,
-          scrollTrigger: {
-            trigger: house,
-            start: "top bottom-=50",
-            end: "center center",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-    });
-
-    gsap.to(`.${styles.duneBackground}`, {
-      backgroundPositionY: "30%",
-      ease: "none",
+    const sectionTl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
         start: "top bottom",
-        end: "bottom top",
-        scrub: true
+        end: "top top",
+        scrub: 1
       }
     });
     
-    // Parallax for the sand overlay meh
-    gsap.to(`.${styles.sandOverlay}`, {
-      backgroundPositionY: "10%",
+    sectionTl.to(".heroContent", {
+      opacity: 0,
+      y: -50,
+      ease: "power2.in"
+    });
+    
+
+    gsap.fromTo(titleRef.current,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        scrollTrigger: {
+          trigger: titleRef.current,
+          start: "top bottom-=100",
+          end: "top center",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+    
+    gsap.fromTo(housesRef.current,
+      { 
+        opacity: 0,
+        y: 80,
+        rotateX: -10
+      },
+      { 
+        opacity: 1,
+        y: 0,
+        rotateX: 0,
+        duration: 1,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current.querySelector(`.${styles.housesGrid}`),
+          start: "top bottom-=50",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+    
+    const egyptianSymbols = document.querySelectorAll(`.${styles.egyptianSymbol}`);
+    egyptianSymbols.forEach(symbol => {
+      gsap.to(symbol, {
+        opacity: gsap.utils.random(0.15, 0.25),
+        duration: gsap.utils.random(10, 20),
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: gsap.utils.random(0, 5)
+      });
+    });
+
+    gsap.to(sectionRef.current.querySelector(`.${styles.dunesSilhouette}`), {
+      y: -80,
       ease: "none",
       scrollTrigger: {
         trigger: sectionRef.current,
@@ -149,71 +157,108 @@ const Houses = () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
-
+  
   return (
     <section id="houses" className={styles.houses} ref={sectionRef}>
-      <div className={styles.duneBackground}></div>
-      <div className={styles.sandOverlay}></div>
+      {/* Section connectors */}
+      <div className={styles.heroConnector}></div>
+      <div className={styles.eventsConnector}></div>
       
-      <div className={styles.container}>
+      {/* Background elements */}
+      <div className={styles.starsPattern}></div>
+      <div className={styles.dunesSilhouette}></div>
+      <div className={styles.gridPattern}></div>
+      
+      {/* Egyptian SVG symbols */}
+      <div className={styles.egyptianSymbols}>
+        <img src="/svgs/ankh.svg" className={`${styles.egyptianSymbol}`} style={{top: '15%', left: '5%', width: '70px', transform: 'rotate(-15deg)'}} alt="" />
+        <img src="/svgs/sphinx-egypt.svg" className={`${styles.egyptianSymbol}`} style={{bottom: '20%', right: '8%', width: '100px'}} alt="" />
+        <img src="/svgs/pharaoh.svg" className={`${styles.egyptianSymbol}`} style={{top: '40%', left: '3%', width: '80px'}} alt="" />
+        <img src="/svgs/mummy-man.svg" className={`${styles.egyptianSymbol}`} style={{top: '25%', right: '12%', width: '70px', transform: 'rotate(10deg)'}} alt="" />
+        <img src="/svgs/hieroglyphs-ancient-culture-egyptian-pyramid.svg" className={`${styles.egyptianSymbol}`} style={{bottom: '35%', left: '12%', width: '60px'}} alt="" />
+        <img src="/svgs/hieroglyphs-ancient-culture-egyptian-pyramid-10.svg" className={`${styles.egyptianSymbol}`} style={{top: '10%', right: '25%', width: '60px', transform: 'rotate(-8deg)'}} alt="" />
+        <img src="/svgs/egyptian-egypt-egyptian-ancient.svg" className={`${styles.egyptianSymbol}`} style={{top: '55%', right: '20%', width: '90px'}} alt="" />
+        
+        <img src="/svgs/ankh.svg" className={`${styles.egyptianSymbol}`} style={{bottom: '45%', right: '28%', width: '60px', transform: 'rotate(20deg)'}} alt="" />
+        <img src="/svgs/sphinx-egypt.svg" className={`${styles.egyptianSymbol}`} style={{top: '15%', left: '35%', width: '120px', transform: 'scaleX(-1) rotate(-5deg)'}} alt="" />
+        <img src="/svgs/mummy-man.svg" className={`${styles.egyptianSymbol}`} style={{bottom: '15%', left: '25%', width: '65px', transform: 'rotate(-15deg)'}} alt="" />
+        <img src="/svgs/hieroglyphs-ancient-culture-egyptian-pyramid.svg" className={`${styles.egyptianSymbol}`} style={{top: '60%', left: '55%', width: '55px', transform: 'rotate(10deg)'}} alt="" />
+        <img src="/svgs/egyptian-egypt-egyptian-ancient.svg" className={`${styles.egyptianSymbol}`} style={{top: '5%', right: '45%', width: '75px', transform: 'rotate(8deg)'}} alt="" />
+      </div>
+      
+      <div className={styles.housesContainer}>
+        {/* Title section */}
         <div className={styles.titleContainer} ref={titleRef}>
           <h2>The Great Houses</h2>
           <p>Choose your allegiance in the artistic landscape of Arrakis</p>
         </div>
         
+        {/* Houses grid */}
         <div className={styles.housesGrid}>
           {housesData.map((house, index) => {
             const IconComponent = house.icon;
-            const isActive = activeHouse === house.id;
             
             return (
               <div 
                 key={house.id} 
-                className={`${styles.houseCard} ${isActive ? styles.active : ''}`}
-                style={{'--house-color': house.color}}
+                className={styles.houseCard}
                 ref={el => housesRef.current[index] = el}
-                onClick={() => handleHouseClick(house.id)}
+                style={{
+                  '--icon-color': house.color,
+                  '--shadow-color': house.color,
+                  '--border-color': house.color,
+                  '--text-color': house.color
+                }}
               >
+                {/* Add card glow and decoration elements */}
+                <div className={styles.cardGlow} style={{backgroundColor: house.color, boxShadow: `0 0 20px ${house.color}`}}></div>
+                <div className={styles.cardDecoration}></div>
+                
+                {/* House header */}
                 <div className={styles.houseTop}>
                   <div className={styles.houseIconContainer}>
-                    <IconComponent size={isActive ? 48 : 36} className={styles.houseIcon} />
+                    <div className={styles.iconCircle} style={{backgroundColor: house.color}}></div>
+                    <div className={styles.iconGlow} style={{background: `radial-gradient(circle, ${house.color} 0%, transparent 70%)`}}></div>
+                    <IconComponent size={38} className={styles.houseIcon} />
                   </div>
                   
-                  <div className={styles.houseName}>{house.name}</div>
-                  <div className={styles.houseDivider}></div>
+                  <h3 className={styles.houseName} style={{color: house.color}}>{house.name}</h3>
                   <div className={styles.houseTitle}>{house.title}</div>
                 </div>
                 
+                {/* House content */}
                 <div className={styles.houseBottom}>
                   <div className={styles.houseDescription}>
                     <p>{house.description}</p>
                   </div>
                   
+                  {/* Stats with new layout */}
                   <div className={styles.houseStats}>
                     <div className={styles.statItem}>
-                      <Users size={16} />
-                      <span>{house.members} Members</span>
+                      <Users size={18} className={styles.statIcon} />
+                      <span className={styles.statValue}>{house.members}</span>
+                      <span className={styles.statLabel}>Members</span>
                     </div>
                     <div className={styles.statItem}>
-                      <Award size={16} />
-                      <span>{house.achievements} Awards</span>
+                      <Trophy size={18} className={styles.statIcon} />
+                      <span className={styles.statValue}>{house.achievements}</span>
+                      <span className={styles.statLabel}>Awards</span>
                     </div>
                     <div className={styles.statItem}>
-                      <Star size={16} />
-                      <span>{house.specialty}</span>
+                      <Star size={18} className={styles.statIcon} />
+                      <span className={styles.statValue}>{house.specialty}</span>
+                      <span className={styles.statLabel}>Focus</span>
                     </div>
                   </div>
                   
+                  {/* Join button */}
                   <div className={styles.houseActions}>
-                    <button className={styles.joinBtn}>
+                    <button className={styles.joinBtn} style={{color: house.color, borderColor: house.color}}>
                       <span>Join House</span>
                       <div className={styles.btnGlow}></div>
                     </button>
                   </div>
                 </div>
-                
-                <div className={styles.cardGlow}></div>
-                <div className={styles.cardDecoration}></div>
               </div>
             );
           })}
