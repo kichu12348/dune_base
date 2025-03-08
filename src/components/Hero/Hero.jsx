@@ -13,7 +13,6 @@ const Hero = () => {
   const logoRef = useRef(null);
   const sandParticlesRef = useRef(null);
   
-  // Animate sand particles with simple animation
   const animateSandParticles = () => {
     const particles = document.querySelectorAll(`.${styles.sandParticle}`);
     
@@ -31,8 +30,7 @@ const Hero = () => {
         height: size,
         opacity: Math.random() * 0.6
       });
-      
-      // Create random floating animation
+
       gsap.to(particle, {
         y: `${y + (Math.random() * 10 - 5)}%`,
         x: `${x + (Math.random() * 10 - 5)}%`,
@@ -46,7 +44,7 @@ const Hero = () => {
   };
   
   useEffect(() => {
-    // Set initial states explicitly to prevent flashing
+    
     gsap.set(`.${styles.heroContent}`, { opacity: 0 });
     gsap.set(`.${styles.logoLetter}`, { 
       opacity: 0, 
@@ -57,8 +55,7 @@ const Hero = () => {
     gsap.set(`.${styles.tagline}`, { opacity: 0, y: 30, filter: 'blur(5px)' });
     gsap.set(`.${styles.exploreBtn}`, { opacity: 0, y: 20 });
     gsap.set(`.${styles.scrollIndicator}`, { opacity: 0, y: -20 });
-    
-    // Use a slight delay to ensure DOM is ready
+
     const tl = gsap.timeline({delay: 0.1});
     
     // Animation timeline for initial animations
@@ -107,7 +104,7 @@ const Hero = () => {
         ease: "sine.inOut"
       });
       
-      // Occasional glitch effect
+      // glitch effect
       gsap.to(letter, {
         skewX: () => Math.random() > 0.7 ? 10 : 0,
         skewY: () => Math.random() > 0.7 ? 10 : 0,
@@ -125,7 +122,7 @@ const Hero = () => {
       });
     });
     
-    // Initialize and animate sand particles
+    // Init sand particles animation
     animateSandParticles();
     
     // Animate scroll indicator
@@ -137,8 +134,6 @@ const Hero = () => {
       ease: "sine.inOut"
     });
     
-    // Set up scroll-triggered parallax effects
-    // Background moves slower than foreground for depth effect
     gsap.to(`.${styles.parallaxBg}`, {
       yPercent: 20,
       ease: "none",
@@ -172,10 +167,9 @@ const Hero = () => {
       }
     });
     
-    // Remove the code that makes content disappear
-    // Instead, add subtle parallax to content
+    
     gsap.to(`.${styles.heroContent}`, {
-      yPercent: -10, // Move slightly upward creating parallax effect
+      yPercent: -10, 
       ease: "none",
       scrollTrigger: {
         trigger: heroRef.current,
