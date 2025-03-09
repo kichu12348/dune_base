@@ -8,12 +8,12 @@ class DuneFaviconManager {
       deepDesert: "#2d2113",
       sandLight: "#e6d2a9",
       sandDark: "#c4aa76",
-      spice: "#cd6c24"
+      spice: "#cd6c24",
     };
     this.frame = 0;
     this.dunePhase = 0;
     this.particles = this.createInitialParticles(3);
-    
+
     this.animate();
   }
 
@@ -55,11 +55,8 @@ class DuneFaviconManager {
   }
 
   drawSandDunes() {
-    // Night sky background
     this.ctx.fillStyle = this.colors.nightSky;
     this.ctx.fillRect(0, 0, 32, 32);
-
-    // Draw stars
     for (let i = 0; i < 15; i++) {
       const x = (i * 7 + this.frame / 10) % 32;
       const y = (i * 3.7 + this.frame / 20) % 15;
@@ -68,8 +65,6 @@ class DuneFaviconManager {
       this.ctx.fillStyle = "rgba(230, 210, 169, 0.4)";
       this.ctx.fillRect(x, y, size, size);
     }
-
-    // Draw distant dunes
     this.ctx.fillStyle = this.colors.deepDesert;
     this.ctx.beginPath();
     this.ctx.moveTo(0, 20);
@@ -85,8 +80,6 @@ class DuneFaviconManager {
     this.ctx.lineTo(0, 32);
     this.ctx.closePath();
     this.ctx.fill();
-
-    // Draw closer dunes
     this.ctx.fillStyle = this.colors.sandDark;
     this.ctx.beginPath();
     this.ctx.moveTo(0, 22);
@@ -105,43 +98,29 @@ class DuneFaviconManager {
   }
 
   drawSpiceParticles() {
-    // Update and draw particles
     for (let i = 0; i < this.particles.length; i++) {
       const p = this.particles[i];
-
-      // Move particle up
       p.y -= p.speed;
       p.currentLife++;
-
-      // Calculate opacity based on life
       const opacity =
         p.currentLife < 20 ? p.currentLife / 20 : (p.life - p.currentLife) / 40;
-
-      // Draw particle
       this.ctx.fillStyle = p.color;
       this.ctx.globalAlpha = Math.max(0, Math.min(opacity, 1));
       this.ctx.fillRect(p.x, p.y, p.size, p.size);
       this.ctx.globalAlpha = 1;
-
-      // Reset dead particles
       if (p.currentLife >= p.life) {
         this.particles[i] = this.createParticle();
       }
     }
-
-    // Randomly add new particles
     if (Math.random() < 0.06 && this.particles.length < 12) {
       this.particles.push(this.createParticle());
     }
   }
 
   drawSandworm() {
-    // Only show worm occasionally
     if (this.frame % 300 < 60) {
       const wormProgress = (this.frame % 300) / 60;
       const x = -10 + wormProgress * 52;
-
-      // Simple sandworm silhouette
       this.ctx.fillStyle = this.colors.deepDesert;
       this.ctx.beginPath();
       this.ctx.arc(x, 25, 5, 0, Math.PI, true);
@@ -149,8 +128,6 @@ class DuneFaviconManager {
       this.ctx.lineTo(x + 5, 32);
       this.ctx.closePath();
       this.ctx.fill();
-
-      // Segments
       this.ctx.fillStyle = this.colors.nightSky;
       this.ctx.fillRect(x - 3, 25, 1, 4);
       this.ctx.fillRect(x, 25, 1, 5);
@@ -159,12 +136,9 @@ class DuneFaviconManager {
   }
 
   draw() {
-    // Draw base elements
     this.drawSandDunes();
     this.drawSpiceParticles();
     this.drawSandworm();
-
-    // Update animation state
     this.dunePhase = (this.dunePhase + 1) % 10000;
     this.frame++;
   }
@@ -172,13 +146,10 @@ class DuneFaviconManager {
   animate() {
     this.draw();
     this.link.href = this.canvas.toDataURL();
-
-    // Run at approximately 10 FPS to reduce CPU usage
     setTimeout(() => this.animate(), 1000 / 10);
   }
 }
 
-// Initialize when page loads
 if (document.readyState === "complete") {
   new DuneFaviconManager();
 } else {

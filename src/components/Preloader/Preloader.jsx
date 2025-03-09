@@ -2,14 +2,13 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import styles from './Preloader.module.css';
 
-const Preloader = () => {
+const Preloader = ({onComplete}) => {
   const preloaderRef = useRef(null);
   const sandParticlesRef = useRef(null);
   
   useEffect(() => {
     const tl = gsap.timeline();
-    
-    // Animate sand particles
+
     gsap.to(sandParticlesRef.current.children, {
       opacity: 0.8,
       scale: 1,
@@ -19,7 +18,6 @@ const Preloader = () => {
       yoyo: true
     });
     
-    // Animate loading text
     tl.to(`.${styles.loadingText}`, {
       opacity: 1,
       duration: 1,
@@ -28,7 +26,8 @@ const Preloader = () => {
     .to(`.${styles.loadingBar}`, {
       width: '100%',
       duration: 2,
-      ease: "power2.inOut"
+      ease: "power2.inOut",
+      onComplete: onComplete
     });
     
     return () => {
@@ -42,6 +41,15 @@ const Preloader = () => {
         {[...Array(20)].map((_, i) => (
           <div key={i} className={styles.particle}></div>
         ))}
+      </div>
+      <div
+        className={styles.logoContainer}
+      >
+        <img 
+        src='/favicon.svg'
+        alt='Utsav Logo'
+        className={styles.logo}
+        />
       </div>
       <h1 className={styles.title}>UTSAV</h1>
       <div className={styles.loadingText}>Awakening the Sands of Arrakis</div>

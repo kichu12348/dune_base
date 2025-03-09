@@ -20,17 +20,47 @@
 }
 
 .logo {
-  font-family: 'Cinzel', serif;
-  font-size: 28px;
-  font-weight: 800;
-  color: var(--sand-light);
-  letter-spacing: 3px;
+  display: flex;
+  align-items: center;
   cursor: pointer;
-  transition: text-shadow 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .logo:hover {
-  text-shadow: 0 0 10px var(--tech-glow);
+  transform: scale(1.05);
+}
+
+.logoImage {
+  height: 40px;
+  width: auto;
+  filter: drop-shadow(0 0 0 var(--sand-light));
+  transition: filter 0.3s ease, transform 1.5s ease;
+  animation: subtlePulse 3s infinite alternate;
+}
+
+.logo:hover .logoImage {
+  filter: drop-shadow(0 0 5px var(--tech-glow));
+  animation: subtleRotate 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes subtlePulse {
+  0% {
+    opacity: 0.95;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes subtleRotate {
+  0% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: rotate(1deg);
+  }
 }
 
 .navLinks {

@@ -42,7 +42,9 @@ const Navbar = () => {
 
   return (
     <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
-      <div className={styles.logo} onClick={() => scrollToSection('hero')}>UTSAV</div>
+      <div className={styles.logo} onClick={() => scrollToSection('hero')}>
+        <img src="/favicon.svg" alt="UTSAV Logo" className={styles.logoImage} />
+      </div>
       
       {/* Desktop Navigation */}
       <ul className={styles.navLinks}>

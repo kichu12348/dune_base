@@ -92,6 +92,38 @@
   align-items: center;
 }
 
+/* Footer Logo */
+.footerLogo {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.footerLogoImage {
+  height: 60px;
+  width: auto;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 8px rgba(196, 170, 118, 0.3));
+  transition: all 0.5s ease;
+  animation: footerLogoPulse 4s infinite alternate;
+}
+
+.footerLogo:hover .footerLogoImage {
+  opacity: 1;
+  filter: drop-shadow(0 0 12px rgba(196, 170, 118, 0.6));
+  transform: scale(1.05);
+}
+
+@keyframes footerLogoPulse {
+  0% {
+    opacity: 0.8;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0.95;
+    transform: translateY(-5px);
+  }
+}
+
 /* Social links */
 .socialLinks {
   display: flex;
@@ -168,5 +200,9 @@
   .socialIcon {
     width: 35px;
     height: 35px;
+  }
+  
+  .footerLogoImage {
+    height: 50px;
   }
 }

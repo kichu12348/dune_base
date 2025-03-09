@@ -100,6 +100,15 @@ const Footer = () => {
         </div>
         
         <div className={styles.footerBottom}>
+          <div className={styles.footerLogo}>
+            <img 
+            src="/favicon.svg" alt="UTSAV Logo" 
+            className={styles.footerLogoImage}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            loading='lazy'
+             />
+          </div>
+          
           <div className={styles.socialLinks}>
             <div className={styles.socialIcon}><Sun size={20} /></div>
             <div className={styles.socialIcon}><Moon size={20} /></div>

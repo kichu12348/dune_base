@@ -12,21 +12,23 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [contentReady, setContentReady] = useState(false);
 
-  useEffect(() => {
+
+  const handlePreloaderComplete = () => {
     const timer = setTimeout(() => {
       setLoading(false);
       setTimeout(() => {
         setContentReady(true);
+        clearTimeout(timer);
       }, 100);
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, []);
+    }, 500);
+  };
 
   return (
     <>
       {loading ? (
-        <Preloader />
+        <Preloader 
+          onComplete={handlePreloaderComplete}
+        />
       ) : (
         <div className={`app-container ${contentReady ? 'content-visible' : ''}`}>
           <Navbar />
