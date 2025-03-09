@@ -217,7 +217,13 @@ const Hero = () => {
         {/* Static sand particles */}
         <div className={styles.sandParticlesContainer} ref={sandParticlesRef}>
           {[...Array(50)].map((_, i) => (
-            <div key={i} className={styles.sandParticle}></div>
+            <div key={i} 
+            className={styles.sandParticle}
+            style={{ 
+              left: `${Math.random() * 100}%`, 
+              top: `${Math.random() * 100}%`
+            }}
+            ></div>
           ))}
         </div>
 
