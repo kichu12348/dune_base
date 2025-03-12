@@ -122,7 +122,7 @@ const Footer = () => {
               The spice must flow.
             </p>
             <p className={styles.credit}>
-              Made With ❤️ by Deelu
+              Made With ❤️ by Neil Oommen Renni
             </p>
           </div>
         </div>
