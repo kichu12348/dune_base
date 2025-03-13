@@ -180,7 +180,7 @@
 
 @media (max-width: 768px) {
   .festivalName {
-    font-size: 5rem;
+    font-size: 3rem;
   }
   
   .hieroglyphChar {
@@ -188,13 +188,13 @@
   }
   
   .lettersRow {
-    gap: 2px;
+    gap: 15px;
   }
 }
 
 @media (max-width: 480px) {
   .festivalName {
-    font-size: 5rem;
+    font-size: 3rem;
   }
   
   .hieroglyphChar {
@@ -202,7 +202,7 @@
   }
   
   .lettersRow {
-    gap: 1px;
+    gap: 15px;
   }
   
   .heroContent {
