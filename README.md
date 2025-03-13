@@ -2,11 +2,16 @@
 
 ![UTSAV Festival](/banner/banner.jpeg)
 
-> **Note**: This project represents my best work so far, combining advanced animation techniques, creative design, and responsive implementation.
+> **Note**: This repository contains a modified version of the project that differs from my original implementation.
+
+## Repository Status
+
+This repository now contains a revised version of the project that has undergone significant design changes from my initial implementation. The original concept featured different artistic choices and technical approaches than what is currently represented here.
 
 ## Overview
 
 UTSAV Arts Festival is an immersive web experience inspired by Frank Herbert's Dune universe, showcasing a fictional arts festival on the desert planet Arrakis. The project features elaborate animations, interactive elements, and a unique aesthetic that blends futuristic technology with mystical desert elements.
+
 
 ## Features
 
