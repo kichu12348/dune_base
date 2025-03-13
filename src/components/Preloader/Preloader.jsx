@@ -1,10 +1,30 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import styles from './Preloader.module.css';
 
 const Preloader = ({onComplete}) => {
   const preloaderRef = useRef(null);
   const sandParticlesRef = useRef(null);
+  
+  // Array of ancient/Egyptian themed messages
+  const messages = [
+    "Ancient Sands Await",
+    "Written in the Stars",
+    "Secrets of the Pharaohs",
+    "Mysteries of the Desert",
+    "The Gods Beckon",
+    "Journey Along the Nile",
+    "Pyramids on the Horizon",
+    "Whispers of the Ancients",
+    "Golden Treasures Await",
+    "The Sun God Rises"
+  ];
+  
+  // Select a random message when component mounts
+  const [loadingMessage] = useState(() => {
+    const randomIndex = Math.floor(Math.random() * messages.length);
+    return messages[randomIndex];
+  });
   
   useEffect(() => {
     const tl = gsap.timeline();
@@ -33,7 +53,7 @@ const Preloader = ({onComplete}) => {
     return () => {
       tl.kill();
     };
-  }, []);
+  }, [onComplete]);
   
   return (
     <div className={styles.preloader} ref={preloaderRef}>
@@ -52,7 +72,7 @@ const Preloader = ({onComplete}) => {
         />
       </div>
       <h1 className={styles.title}>UTSAV</h1>
-      <div className={styles.loadingText}>The Spice Must Flow</div>
+      <div className={styles.loadingText}>{loadingMessage}</div>
       <div className={styles.loadingBarContainer}>
         <div className={styles.loadingBar}></div>
       </div>
