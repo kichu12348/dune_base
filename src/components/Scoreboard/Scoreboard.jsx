@@ -1,46 +1,46 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Sun, Moon, Wind, Flame, Trophy, Award, Medal, Star } from 'lucide-react';
+import { Trophy, Award, Medal, Star } from 'lucide-react';
 import styles from './Scoreboard.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Dummy data for house scores
+// Updated house scores with the new houses and logos
 const houseScores = [
   {
-    id: 'solis',
-    name: 'House Solis',
-    icon: Sun,
+    id: 'atreides',
+    name: 'House Atreides',
+    logo: '/houses/atreides.svg',
     score: 2756,
-    color: 'var(--house-solis)',
+    color: 'var(--house-atreides)',
     achievements: 8,
     ranking: 1
   },
   {
-    id: 'nyx',
-    name: 'House Nyx',
-    icon: Moon,
+    id: 'arrakis',
+    name: 'House Arrakis',
+    logo: '/houses/arrakis.jpg',
     score: 2598,
-    color: 'var(--house-nyx)',
+    color: 'var(--house-arrakis)',
     achievements: 7,
     ranking: 2
   },
   {
-    id: 'zephyr',
-    name: 'House Zephyr',
-    icon: Wind,
+    id: 'winterfell',
+    name: 'House Winterfell',
+    logo: '/houses/winterfellLogo.jpg',
     score: 2371,
-    color: 'var(--house-zephyr)',
+    color: 'var(--house-winterfell)',
     achievements: 6,
     ranking: 3
   },
   {
-    id: 'ignis',
-    name: 'House Ignis',
-    icon: Flame,
+    id: 'zephandor',
+    name: 'House Zephandor',
+    logo: '/houses/zeph2.png',
     score: 2187,
-    color: 'var(--house-ignis)',
+    color: 'var(--house-zephandor)',
     achievements: 5,
     ranking: 4
   }
@@ -215,7 +215,6 @@ const Scoreboard = () => {
         
         <div className={styles.rankingsContainer}>
           {sortedHouses.map(house => {
-            const IconComponent = house.icon;
             const scorePercentage = (house.score / maxScore) * 100;
             
             return (
@@ -225,7 +224,11 @@ const Scoreboard = () => {
                 </div>
                 
                 <div className={styles.houseIcon} style={{backgroundColor: house.color}}>
-                  <IconComponent size={24} />
+                  <img 
+                    src={house.logo} 
+                    alt={`${house.name} Logo`} 
+                    className={styles.houseLogo}
+                  />
                 </div>
                 
                 <div className={styles.houseName}>{house.name}</div>
@@ -253,9 +256,6 @@ const Scoreboard = () => {
                         opacity: i < house.achievements % 3 ? 1 : 0.2
                       }}
                     >
-                      {i === 0 && <Medal size={16} />}
-                      {i === 1 && <Award size={16} />}
-                      {i === 2 && <Star size={16} />}
                     </div>
                   ))}
                 </div>
@@ -264,7 +264,7 @@ const Scoreboard = () => {
           })}
         </div>
         
-        <div className={styles.dataInfo}>
+        {/* <div className={styles.dataInfo}>
           <div className={styles.lastUpdated}>
             <span className={styles.blinkingDot}></span>
             Last updated: Festival Day 7
@@ -272,7 +272,7 @@ const Scoreboard = () => {
           <div className={styles.viewDetails}>
             <button className={styles.detailsBtn}>View Detailed Analytics</button>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

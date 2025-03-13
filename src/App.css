@@ -15,6 +15,10 @@
   --house-nyx: #8175a3;
   --house-zephyr: #98c1d9;
   --house-ignis: #e63946;
+  --house-atreides: #a0a0a0; /* Ash */
+  --house-arrakis: #d2b48c; /* Dust */
+  --house-winterfell: #e1e6e9; /* Mist */
+  --house-zephandor: #6495ed; /* Water */
 }
 
 * {

@@ -8,7 +8,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 50;
+      const isScrolled = window.scrollY > window.innerHeight-80;
       if (isScrolled !== scrolled) {
         setScrolled(isScrolled);
       }
@@ -61,7 +61,7 @@ const Navbar = () => {
       <ul className={styles.navLinks}>
         <li onClick={() => scrollToSection("hero")}>Home</li>
         <li onClick={() => scrollToSection("houses")}>Houses</li>
-        <li onClick={() => scrollToSection("events")}>Events</li>
+        {/* <li onClick={() => scrollToSection("events")}>Events</li> */}
         <li onClick={() => scrollToSection("scoreboard")}>Scoreboard</li>
       </ul>
 
@@ -82,7 +82,7 @@ const Navbar = () => {
             <ul className={styles.mobileNavLinks}>
               <li onClick={() => scrollToSection("hero")}>Home</li>
               <li onClick={() => scrollToSection("houses")}>Houses</li>
-              <li onClick={() => scrollToSection("events")}>Events</li>
+              {/* <li onClick={() => scrollToSection("events")}>Events</li> */}
               <li onClick={() => scrollToSection("scoreboard")}>Scoreboard</li>
             </ul>
             <div className={styles.mobileNavFooter}>

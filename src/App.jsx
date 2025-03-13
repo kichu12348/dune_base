@@ -35,7 +35,7 @@ function App() {
           <main>
             <Hero />
             <Houses />
-            <Events />
+            {/* <Events /> */}
             <Scoreboard />
           </main>
           <Footer />

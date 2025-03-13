@@ -52,7 +52,7 @@ const Preloader = ({onComplete}) => {
         />
       </div>
       <h1 className={styles.title}>UTSAV</h1>
-      <div className={styles.loadingText}>Awakening the Sands of Arrakis</div>
+      <div className={styles.loadingText}>The Spice Must Flow</div>
       <div className={styles.loadingBarContainer}>
         <div className={styles.loadingBar}></div>
       </div>
