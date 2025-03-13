@@ -30,7 +30,7 @@
   color: var(--sand-light); 
   letter-spacing: 15px;
   margin-bottom: 20px;
-  text-shadow: 0 0 10px var(--spice); 
+  text-shadow: 0 0 5px var(--sand-dark); 
   font-family: 'Sketsa Ramadhan', serif;
 }
 
