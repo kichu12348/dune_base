@@ -14,7 +14,7 @@ const houseScores = [
     logo: '/houses/atreides.svg',
     score: 0,
     color: 'var(--house-atreides)',
-    achievements: 8,
+    achievements: 0,
     ranking: 1
   },
   {
@@ -23,7 +23,7 @@ const houseScores = [
     logo: '/houses/arrakis.jpg',
     score: 0,
     color: 'var(--house-arrakis)',
-    achievements: 7,
+    achievements: 0,
     ranking: 2
   },
   {
@@ -32,7 +32,7 @@ const houseScores = [
     logo: '/houses/winterfellLogo.jpg',
     score: 0,
     color: 'var(--house-winterfell)',
-    achievements: 6,
+    achievements: 0,
     ranking: 3
   },
   {
@@ -41,7 +41,7 @@ const houseScores = [
     logo: '/houses/zeph2.png',
     score: 0,
     color: 'var(--house-zephandor)',
-    achievements: 5,
+    achievements: 0,
     ranking: 4
   }
 ];
