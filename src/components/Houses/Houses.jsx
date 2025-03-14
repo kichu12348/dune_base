@@ -287,7 +287,7 @@ const Houses = () => {
                     <p>{house.description}</p>
                   </div>
 
-                  {/* Stats with new layout */}
+                  {/* Stats with new layout 
                   <div className={styles.houseStats}>
                     <div className={styles.statItem}>
                       <Users size={18} className={styles.statIcon} />
@@ -308,7 +308,7 @@ const Houses = () => {
                       </span>
                       <span className={styles.statLabel}>Focus</span>
                     </div>
-                  </div>
+                  </div>*/}
 
                   {/* Join button */}
                   <div className={styles.houseActions}>
