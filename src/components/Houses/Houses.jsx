@@ -238,7 +238,7 @@ const Houses = () => {
                 style={{
                   "--icon-color": house.color,
                   "--shadow-color": house.color,
-                  "--border-color": house.color,
+                  "--border-color": "transparent",
                   "--text-color": house.color,
                 }}
               >
