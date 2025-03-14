@@ -238,7 +238,7 @@ const Houses = () => {
                 style={{
                   "--icon-color": house.color,
                   "--shadow-color": house.color,
-                  "--border-color": "transparent",
+                  "--border-color": house.color,
                   "--text-color": house.color,
                 }}
               >
@@ -257,12 +257,12 @@ const Houses = () => {
                   <div className={styles.houseIconContainer}>
                     <div
                       className={styles.iconCircle}
-                      style={{ backgroundColor: house.color }}
+                      style={{ backgroundColor: "transparent"}}
                     ></div>
                     <div
                       className={styles.iconGlow}
                       style={{
-                        background: `radial-gradient(circle, ${house.color} 0%, transparent 70%)`,
+                        background: `transparent`,
                       }}
                     ></div>
                     <img 
