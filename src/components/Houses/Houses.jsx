@@ -15,8 +15,8 @@ const housesData = [
     description:
       "A house of honor and justice, whose leadership principles and strategic brilliance have earned them respect across the universe.",
     color: "var(--house-atreides)",
-    members: 130,
-    achievements: 10,
+    members: 0,
+    achievements: 0,
     specialty: "Leadership",
   },
   {
@@ -27,8 +27,8 @@ const housesData = [
     description:
       "Born of the harsh desert, they've mastered survival in the most unforgiving landscapes, finding beauty and strength where others see only desolation.",
     color: "var(--house-arrakis)",
-    members: 110,
-    achievements: 7,
+    members: 0,
+    achievements: 0,
     specialty: "Desert Craft",
   },
   {
@@ -39,8 +39,8 @@ const housesData = [
     description:
       "Steadfast and resilient as the northern winters, they embody honor and tradition while preparing for the long challenges ahead.",
     color: "var(--house-winterfell)",
-    members: 105,
-    achievements: 8,
+    members: 0,
+    achievements: 0,
     specialty: "Strategy",
   },
   {
@@ -51,8 +51,8 @@ const housesData = [
     description:
       "Fluid and adaptable, they harness the power of innovation and knowledge, flowing around obstacles rather than confronting them directly.",
     color: "var(--house-zephandor)",
-    members: 118,
-    achievements: 9,
+    members: 0,
+    achievements: 0,
     specialty: "Innovation",
   },
 ];
