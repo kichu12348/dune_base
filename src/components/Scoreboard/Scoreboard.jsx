@@ -12,7 +12,7 @@ const houseScores = [
     id: 'atreides',
     name: 'House Atreides',
     logo: '/houses/atreides.svg',
-    score: 2756,
+    score: 0,
     color: 'var(--house-atreides)',
     achievements: 8,
     ranking: 1
@@ -21,7 +21,7 @@ const houseScores = [
     id: 'arrakis',
     name: 'House Arrakis',
     logo: '/houses/arrakis.jpg',
-    score: 2598,
+    score: 0,
     color: 'var(--house-arrakis)',
     achievements: 7,
     ranking: 2
@@ -30,7 +30,7 @@ const houseScores = [
     id: 'winterfell',
     name: 'House Winterfell',
     logo: '/houses/winterfellLogo.jpg',
-    score: 2371,
+    score: 0,
     color: 'var(--house-winterfell)',
     achievements: 6,
     ranking: 3
@@ -39,7 +39,7 @@ const houseScores = [
     id: 'zephandor',
     name: 'House Zephandor',
     logo: '/houses/zeph2.png',
-    score: 2187,
+    score: 0,
     color: 'var(--house-zephandor)',
     achievements: 5,
     ranking: 4
