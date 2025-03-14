@@ -85,8 +85,8 @@ const Footer = () => {
           <div className={styles.footerColumn}>
             <h4>UTSAV Festival</h4>
             <p>
-              A celebration of arts beneath the eternal stars, where creativity
-              rises like the morning sun over the sacred sands.
+              In a Middle Eastern nation, hidden followers revive the forgotten hero Misaya by hijacking the Elwar Festival. 
+              Seizing the moment, Misaya renames it UTSAV, reclaiming his place in history.
             </p>
           </div>
 
