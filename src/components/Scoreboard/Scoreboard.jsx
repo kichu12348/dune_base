@@ -223,7 +223,7 @@ const Scoreboard = () => {
                   {house.ranking === 1 ? <Trophy size={22} /> : `${house.ranking}`}
                 </div>
                 
-                <div className={styles.houseIcon} style={{backgroundColor: house.color}}>
+                <div className={styles.houseIcon} style={{backgroundColor: "transparent"}}>
                   <img 
                     src={house.logo} 
                     alt={`${house.name} Logo`} 
