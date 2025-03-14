@@ -142,7 +142,7 @@ const Footer = () => {
             </p>
             <p className={styles.credit}>May the Ankh guide your path.</p>
             <p className={styles.credit}>
-              Crafted with ❤️ by Neil Oommen Renni
+              Crafted with ❤️ by S4 E
             </p>
           </div>
         </div>
