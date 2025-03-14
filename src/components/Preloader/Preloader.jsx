@@ -71,8 +71,8 @@ const Preloader = ({onComplete}) => {
         className={styles.logo}
         />
       </div>
-      <h1 className={styles.title}>UTSAV</h1>
-      <div className={styles.loadingText}>{loadingMessage}</div>
+     {/* <h1 className={styles.title}>UTSAV</h1>
+      <div className={styles.loadingText}>{loadingMessage}</div>*/}
       <div className={styles.loadingBarContainer}>
         <div className={styles.loadingBar}></div>
       </div>
