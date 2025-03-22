@@ -323,10 +323,10 @@ const HouseDetails = () => {
           <div className={styles.scoreValueContainer}>
             <ScoreCounter value={houseData.totalScore} color={houseData.color} />
           </div>
-          <div className={styles.rankLabel}>
+         {/*<div className={styles.rankLabel}>
             <Trophy size={16} />
             <span>Ranking: {score?.houseRankings?.find(h => h.id === houseId)?.ranking || '-'}</span>
-          </div>
+          </div>*/}
         </div>
       </div>
       
