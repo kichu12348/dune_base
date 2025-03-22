@@ -262,7 +262,7 @@ const Scoreboard = () => {
 
         <div className={styles.rankingsContainer}>
           {sortedHouses.map((house) => {
-            const scorePercentage = (house.score / maxScore) * 100;
+            const scorePercentage = ((house.score%200)/200) * 100; // 150 is the max score assuming all houses have the same score
 
             return (
               <div key={house.id} className={styles.rankingRowWrapper}>
