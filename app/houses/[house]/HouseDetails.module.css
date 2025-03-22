@@ -523,6 +523,10 @@
   .houseInfo h1 {
     font-size: 2.2rem;
   }
+
+  .scoreCard{
+    margin-bottom: 40px;
+  }
   
   .houseMotto {
     font-size: 1rem;
