@@ -233,7 +233,7 @@
 
 .scoreBar {
   height: 100%;
-  width: 100%;
+  width: var(--score-width);
   transform: scaleX(0); 
   transform-origin: left center;
   border-radius: 20px;
