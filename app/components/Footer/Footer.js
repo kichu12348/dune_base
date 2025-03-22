@@ -127,18 +127,29 @@ const Footer = () => {
             <h4>Royal Messengers</h4>
             <p>utsavcec25@gmail.com</p>
             <p>Speak to our High Priests: +91 77364 74154</p>
+            <p>College of Engineering, Chengannur</p>
           </div>
         </div>
 
         <div className={styles.footerBottom}>
-          <div className={styles.footerLogo}>
-            <img
-              src="/favicon.svg"
-              alt="UTSAV Sacred Symbol"
-              className={styles.footerLogoImage}
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              loading="lazy"
-            />
+          <div className={styles.logoContainer}>
+            <div className={styles.footerLogo}>
+              <img
+                src="/favicon.svg"
+                alt="UTSAV Sacred Symbol"
+                className={styles.footerLogoImage}
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                loading="lazy"
+              />
+            </div>
+            <div className={styles.collegeLogo}>
+              <img
+                src="/images/college.png"
+                alt="College of Engineering, Chengannur"
+                className={styles.collegeLogoImage}
+                loading="lazy"
+              />
+            </div>
           </div>
 
           <div className={styles.socialLinks}>
@@ -167,6 +178,7 @@ const Footer = () => {
               © 2025 UTSAV Arts Festival. All rights protected by the Eye of
               Horus.
             </p>
+            <p className={styles.credit}>College of Engineering, Chengannur</p>
             <p className={styles.credit}>May the Ankh guide your path.</p>
             <p className={styles.credit}>
               Crafted with ❤️ by S4 E

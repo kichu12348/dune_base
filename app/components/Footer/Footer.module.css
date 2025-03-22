@@ -99,8 +99,15 @@
 }
 
 /* Footer Logo */
-.footerLogo {
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
   margin-bottom: 30px;
+}
+
+.footerLogo {
   text-align: center;
 }
 
@@ -114,9 +121,30 @@
   will-change: opacity, transform;
 }
 
+
 .footerLogo:hover .footerLogoImage {
   opacity: 1;
   filter: drop-shadow(0 0 12px rgba(196, 170, 118, 0.6));
+  transform: scale(1.05);
+}
+
+.collegeLogo {
+  text-align: center;
+}
+
+.collegeLogoImage {
+  height: 70px;
+  width: auto;
+  opacity: 0.85;
+  filter: sepia(20%) brightness(110%) contrast(90%) drop-shadow(0 0 8px rgba(196, 170, 118, 0.3));
+  transition: all 0.5s ease;
+  animation: footerLogoPulse 4s infinite alternate;
+  will-change: opacity, transform;
+}
+
+.collegeLogo:hover .collegeLogoImage {
+  opacity: 1;
+  filter: sepia(20%) brightness(110%) contrast(90%) drop-shadow(0 0 12px rgba(196, 170, 118, 0.6));
   transform: scale(1.05);
 }
 
@@ -211,11 +239,15 @@
     height: 35px;
   }
   
-  .footerLogoImage {
+  .footerLogoImage,
+  .collegeLogoImage {
     height: 50px;
     animation: footerLogoPulse 6s infinite alternate; 
   }
   
+  .collegeLogoImage {
+    height: 60px;
+  }
   .socialIcon:hover {
     transform: translateY(-3px); 
   }
