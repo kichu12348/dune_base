@@ -1,0 +1,354 @@
+.eventsSection {
+  /* More gradual gradient starting with night-sky */
+  background: linear-gradient(to bottom, 
+    var(--night-sky) 20%, 
+    var(--deep-desert) 45%, 
+    var(--deep-desert) 85%,
+    var(--night-sky) 100%); 
+  padding: 120px 5% 100px;
+  padding-top: 300px;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  z-index: 0;
+}
+
+.topConnector {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300px; 
+  background: linear-gradient(
+    to bottom,
+    var(--night-sky) 0%,
+    rgba(14, 17, 17, 0.9) 20%,
+    rgba(14, 17, 17, 0.7) 40%,
+    rgba(14, 17, 17, 0.5) 60%,
+    rgba(14, 17, 17, 0.2) 80%,
+    transparent 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.backgroundDecoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.gridPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(196, 170, 118, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196, 170, 118, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.5;
+}
+
+.decorCircle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(196, 170, 118, 0.1);
+  opacity: 0.2;
+}
+
+.circle1 {
+  width: 400px;
+  height: 400px;
+  top: -100px;
+  left: -100px;
+}
+
+.circle2 {
+  width: 600px;
+  height: 600px;
+  bottom: -200px;
+  right: -200px;
+  border-width: 2px;
+}
+
+.circle3 {
+  width: 300px;
+  height: 300px;
+  top: 40%;
+  left: 60%;
+}
+
+.dustParticle {
+  position: absolute;
+  background-color: #c29b45;
+  border-radius: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+
+.diagonalLine {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(196, 170, 118, 0.2), transparent);
+  transform: rotate(-45deg);
+  transform-origin: left;
+}
+
+.line1 {
+  width: 100%;
+  top: 20%;
+  left: 0;
+}
+
+.line2 {
+  width: 80%;
+  top: 50%;
+  left: 30%;
+}
+
+.line3 {
+  width: 60%;
+  top: 80%;
+  right: -10%;
+  transform: rotate(45deg);
+}
+
+.ornament {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  opacity: 0.2;
+  filter: invert(65%) sepia(19%) saturate(723%) hue-rotate(4deg) brightness(92%) contrast(84%);
+}
+
+.ornamentTop {
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ornamentBottom {
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+.ornamentLeft {
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+.ornamentRight {
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+@keyframes floatDust {
+  0% { transform: translate(0, 0); opacity: 0; }
+  25% { opacity: 0.3; }
+  75% { opacity: 0.3; }
+  100% { transform: translate(var(--x-move), var(--y-move)); opacity: 0; }
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  text-align: center;
+  margin-bottom: 60px;
+  color: var(--sand-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titleLine {
+  display: block;
+  font-size: 3.2rem;
+  line-height: 1.2;
+}
+
+.titleLine:first-child {
+  color: var(--sand-dark);
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.eventsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.eventCard {
+  height: 450px;
+  perspective: 1000px;
+}
+
+.eventCardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.eventCard:hover .eventCardInner {
+  transform: rotateY(180deg);
+}
+
+.eventFront, .eventBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.eventFront {
+  background: linear-gradient(to bottom, rgba(14, 17, 17, 0.9), rgba(45, 33, 19, 0.95));
+  border: 1px solid rgba(196, 170, 118, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.eventBack {
+  background: linear-gradient(to bottom, rgba(45, 33, 19, 0.95), rgba(14, 17, 17, 0.9));
+  border: 1px solid rgba(196, 170, 118, 0.3);
+  transform: rotateY(180deg);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+.eventImageContainer {
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+}
+
+.eventImage {
+  width: 100%;
+  height: 100%;
+  background-color: var(--deep-desert);
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease;
+}
+
+.eventCard:nth-child(1) .eventImage { background-color: var(--spice); opacity: 0.8; }
+.eventCard:nth-child(2) .eventImage { background-color: var(--house-nyx); opacity: 0.8; }
+.eventCard:nth-child(3) .eventImage { background-color: var(--house-ignis); opacity: 0.8; }
+.eventCard:nth-child(4) .eventImage { background-color: var(--house-solis); opacity: 0.8; }
+.eventCard:nth-child(5) .eventImage { background-color: var(--house-zephyr); opacity: 0.8; }
+.eventCard:nth-child(6) .eventImage { background-color: var(--tech-blue); opacity: 0.8; }
+
+.eventCard:hover .eventImage {
+  transform: scale(1.05);
+}
+
+.eventTitle {
+  padding: 20px 20px 10px;
+  font-size: 1.4rem;
+  color: var(--sand-light);
+  flex-grow: 1;
+}
+
+.eventMeta {
+  padding: 0 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--sand-dark);
+  font-size: 0.9rem;
+}
+
+.eventDescription {
+  color: var(--sand-light);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.eventHost {
+  color: var(--sand-dark);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.registerBtn {
+  align-self: center;
+  padding: 10px 25px;
+  background-color: transparent;
+  border: 1px solid var(--spice);
+  color: var(--spice);
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: auto; 
+}
+
+.viewMoreContainer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.viewMoreBtn {
+  padding: 12px 30px;
+  background-color: transparent;
+  border: 1px solid var(--tech-blue);
+  color: var(--tech-blue);
+  font-family: 'Cinzel', serif;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.viewMoreBtn:hover {
+  background-color: var(--tech-blue);
+  color: var(--night-sky);
+  box-shadow: 0 0 15px var(--tech-glow);
+}
+
+@media (max-width: 768px) {
+  .eventsGrid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto 40px;
+  }
+  
+  .titleLine {
+    font-size: 2.5rem;
+  }
+  
+  .titleLine:first-child {
+    font-size: 1.5rem;
+  }
+  
+  .eventCard {
+    height: 420px;
+  }
+
+  .eventBack {
+    padding: 20px;
+  }
+}

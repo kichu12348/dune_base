@@ -1,0 +1,222 @@
+.footer {
+  position: relative;
+  background-color: var(--night-sky);
+  color: var(--sand-dark);
+  padding: 80px 5% 40px;
+  overflow: hidden;
+}
+
+
+.quoteSection, .footerColumns, .socialIcon {
+  will-change: transform;
+  transform: translateZ(0); /* Force GPU acceleration */
+}
+
+.footerContent {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Quote section */
+.quoteSection {
+  text-align: center;
+  margin-bottom: 60px;
+  padding-bottom: 40px;
+  position: relative;
+}
+
+.quoteSection::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--sand-dark),
+    transparent
+  );
+}
+
+.quote {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  color: var(--sand-light);
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.quoteAuthor {
+  color: var(--spice);
+  font-style: italic;
+  font-size: 1rem;
+}
+
+/* Footer columns */
+.footerColumns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 60px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(196, 170, 118, 0.2);
+}
+
+.footerColumn h4 {
+  color: var(--sand-light);
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  position: relative;
+  display: inline-block;
+}
+
+.footerColumn h4::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 50%;
+  height: 1px;
+  background-color: var(--spice);
+}
+
+.footerColumn p {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Footer bottom */
+.footerBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Footer Logo */
+.footerLogo {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.footerLogoImage {
+  height: 60px;
+  width: auto;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 8px rgba(196, 170, 118, 0.3));
+  transition: all 0.5s ease;
+  animation: footerLogoPulse 4s infinite alternate;
+  will-change: opacity, transform;
+}
+
+.footerLogo:hover .footerLogoImage {
+  opacity: 1;
+  filter: drop-shadow(0 0 12px rgba(196, 170, 118, 0.6));
+  transform: scale(1.05);
+}
+
+@keyframes footerLogoPulse {
+  0% {
+    opacity: 0.8;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0.95;
+    transform: translateY(-5px);
+  }
+}
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  gap: 20px;
+  contain: layout style; 
+}
+
+.socialIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(196, 170, 118, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--sand-light);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.socialIcon:hover {
+  background-color: var(--spice);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+.copyright {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.copyright p {
+  margin-bottom: 10px;
+}
+
+.credit {
+  color: var(--sand-dark);
+  font-style: italic;
+  opacity: 0.7;
+}
+
+
+.sandFooter {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(to top, var(--deep-desert), transparent);
+  opacity: 0.3;
+}
+
+@media (max-width: 768px) {
+  .quote {
+    font-size: 1.4rem;
+  }
+  
+  .footerColumns {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .footerColumn h4::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .socialLinks {
+    gap: 15px;
+  }
+  
+  .socialIcon {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .footerLogoImage {
+    height: 50px;
+    animation: footerLogoPulse 6s infinite alternate; 
+  }
+  
+  .socialIcon:hover {
+    transform: translateY(-3px); 
+  }
+}

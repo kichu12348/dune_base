@@ -1,0 +1,667 @@
+.houseDetails {
+  min-height: 100vh;
+  background-color: var(--night-sky);
+  color: var(--text-light);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.backgroundElements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.starsPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(2px 2px at 40px 60px, #ccc, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 20px 50px, white, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 30px 100px, #e6d2a9, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 110px 90px, #ddd, rgba(0,0,0,0));
+  background-size: 250px 250px;
+  opacity: 0.2;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.gridPattern {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  background-image: 
+    linear-gradient(rgba(196, 170, 118, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196, 170, 118, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.5;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hieroglyph {
+  position: absolute;
+  color: var(--sand-light);
+  pointer-events: none;
+  opacity: 0.08;
+  font-family: serif;
+  animation: float 15s infinite ease-in-out;
+}
+
+.star {
+  position: absolute;
+  background-color: var(--sand-light);
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: twinkle 3s infinite alternate ease-in-out;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.9; }
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-10px, -10px) rotate(-5deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: var(--sand-light);
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: particleFloat 20s infinite linear;
+}
+
+@keyframes particleFloat {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 0.5; }
+  90% { opacity: 0.5; }
+  100% { transform: translateY(-100px) translateX(20px); opacity: 0; }
+}
+
+.scoreDetails{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.header {
+  padding: 60px 20px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(145deg, 
+    rgba(25, 22, 20, 0.9) 0%,
+    rgba(14, 17, 17, 0.95) 100%
+  );
+  overflow: hidden;
+  z-index: 1;
+}
+
+.houseColorAccent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  opacity: 0.7;
+  box-shadow: 0 0 20px currentColor;
+  z-index: 10;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(196, 170, 118, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196, 170, 118, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, var(--night-sky));
+  pointer-events: none;
+  z-index: 2;
+}
+
+.backButton {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 10;
+}
+
+.backButton:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  transform: translateX(-5px);
+}
+
+.houseInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+  max-width: 600px;
+  text-align: center;
+}
+
+.logoContainer {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.logoGlow {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: 0.6;
+  animation: pulse 3s infinite alternate;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.4; transform: scale(1); }
+  100% { opacity: 0.8; transform: scale(1.1); }
+}
+
+.houseLogo {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 5px;
+  position: relative;
+  z-index: 2;
+  animation: floating 6s infinite ease-in-out;
+}
+
+@keyframes floating {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.houseInfo h1 {
+  font-size: 3rem;
+  font-family: 'Cinzel', serif;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
+}
+
+.houseMotto {
+  font-style: italic;
+  margin-bottom: 20px;
+  opacity: 0.9;
+  font-size: 1.2rem;
+  font-family: 'Palatino', serif;
+  color: var(--sand-light);
+}
+
+.houseDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: var(--sand-dark);
+}
+
+.specialtyBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 8px;
+  border: 1px solid;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--sand-light);
+}
+
+.scoreCard {
+  position: relative;
+  background: linear-gradient(145deg, 
+    rgba(25, 22, 20, 0.85) 0%,
+    rgba(14, 17, 17, 0.95) 100%
+  );
+  padding: 25px 40px;
+  border-radius: 10px;
+  text-align: center;
+  transform: translateY(50%);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(196, 170, 118, 0.15);
+  z-index: 10;
+  min-width: 250px;
+}
+
+.scoreLabel {
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  color: var(--sand-light);
+}
+
+.scoreValueContainer {
+  position: relative;
+  margin: 15px 0;
+}
+
+.scoreValue {
+  font-size: 4rem;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: bold;
+  text-shadow: 0 0 15px currentColor;
+}
+
+.rankLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 0.9rem;
+  color: var(--sand-dark);
+  margin-top: 10px;
+}
+
+.contentContainer {
+  padding: 80px 20px 60px;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.eventsContainer {
+  margin-bottom: 60px;
+}
+
+.eventsContainer h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  font-family: 'Exo 2', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  letter-spacing: 1px;
+  color: var(--sand-light);
+}
+
+.sectionIcon {
+  opacity: 0.8;
+  color: var(--sand-light);
+}
+
+.eventsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.eventItem {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: linear-gradient(145deg, 
+    rgba(25, 22, 20, 0.6) 0%,
+    rgba(14, 17, 17, 0.8) 100%
+  );
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(196, 170, 118, 0.1);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.eventItem.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.eventItem:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(145deg, 
+    rgba(25, 22, 20, 0.7) 0%,
+    rgba(14, 17, 17, 0.9) 100%
+  );
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.eventContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.eventName {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: var(--sand-light);
+}
+
+.eventPosition {
+  display: flex;
+  align-items: center;
+}
+
+.eventScoreContainer {
+  position: relative;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.eventScoreBar {
+  height: 8px;
+  border-radius: 4px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: width 1s cubic-bezier(0.25, 1, 0.5, 1);
+  opacity: 0.7;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.eventScore {
+  position: absolute;
+  right: 0;
+  font-size: 1.5rem;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: bold;
+}
+
+.noEvents {
+  text-align: center;
+  padding: 60px 20px;
+  font-style: italic;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.houseStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.statCard {
+  background: linear-gradient(145deg, 
+    rgba(25, 22, 20, 0.6) 0%,
+    rgba(14, 17, 17, 0.8) 100%
+  );
+  border-radius: 8px;
+  padding: 25px;
+  text-align: center;
+  border: 1px solid rgba(196, 170, 118, 0.1);
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.statValue {
+  font-size: 2.5rem;
+  font-weight: bold;
+  font-family: 'Exo 2', sans-serif;
+  color: var(--sand-light);
+  margin-bottom: 10px;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--sand-dark);
+  line-height: 1.4;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.2rem;
+  color: var(--text-light);
+  gap: 20px;
+  background-color: var(--night-sky);
+}
+
+.loadingSpinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid var(--sand-dark);
+  border-top: 3px solid var(--sand-light);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .header {
+    padding: 50px 15px 80px;
+  }
+  
+  .houseInfo h1 {
+    font-size: 2.2rem;
+  }
+  
+  .houseMotto {
+    font-size: 1rem;
+  }
+  
+  .scoreValue {
+    font-size: 3rem;
+  }
+  
+  .backButton {
+    top: 15px;
+    left: 15px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .houseStats {
+    grid-template-columns: 1fr;
+  }
+  
+  .contentContainer {
+    padding: 70px 15px 40px;
+  }
+  
+  .eventName {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .houseLogo {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .houseInfo h1 {
+    font-size: 1.8rem;
+  }
+  
+  .scoreCard {
+    padding: 20px 30px;
+  }
+  
+  .scoreValue {
+    font-size: 2.5rem;
+  }
+  
+  .eventItem {
+    padding: 15px;
+  }
+  
+  .eventScore {
+    font-size: 1.2rem;
+  }
+  
+  .statValue {
+    font-size: 2rem;
+  }
+}
+
+.eventSectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(196, 170, 118, 0.1);
+  color: var(--sand-light);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.scoredEvent {
+  border-left: 3px solid currentColor;
+}
+
+.participatedEvent {
+  opacity: 0.8;
+  border-left: 3px solid transparent;
+}
+
+.participatedEvent:hover {
+  opacity: 1;
+}
+
+.highestScore {
+  color: var(--spice);
+  animation: pulseStar 2s infinite alternate;
+}
+
+@keyframes pulseStar {
+  0% { opacity: 0.7; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
+.positionBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: rgba(196, 170, 118, 0.1);
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--sand-light);
+}
+
+.noScoreBadge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.emptyScoreBar {
+  position: relative;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+/* .emptyScoreBar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+} */
+
+.scoreDetails {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.scoreComparison {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.maxScore {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  color: var(--text-secondary);
+}

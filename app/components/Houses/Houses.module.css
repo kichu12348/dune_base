@@ -1,0 +1,714 @@
+.houses {
+  position: relative;
+  min-height: 100vh;
+  padding: 100px 0 120px;
+  overflow: hidden;
+  z-index: 1;
+  margin-top: 0; 
+  margin-bottom: 0; 
+  background: var(--night-sky);
+}
+
+.houses::before {
+  display: none;
+}
+
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10%;
+  background: linear-gradient(to bottom,var(--night-sky),transparent);
+  z-index: 100;
+}
+
+.houses::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(235, 200, 100, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(235, 200, 100, 0.05) 0%, transparent 50%);
+  background-size: 30% 30%, 40% 40%;
+  background-repeat: repeat;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.heroConnector {
+  display: none;
+}
+
+.housesContainer{
+  padding:0 20px;
+}
+
+.starsPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(2px 2px at 40px 60px, #ccc, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 20px 50px, white, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 30px 100px, #e6d2a9, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 110px 90px, #ddd, rgba(0,0,0,0));
+  background-size: 250px 250px;
+  opacity: 0.2;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.gridPattern {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  background-image: 
+    linear-gradient(rgba(196, 170, 118, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196, 170, 118, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.5;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.eventsConnector {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(to bottom, 
+    transparent 0%,
+    rgba(14, 17, 17, 0.5) 40%,
+    rgba(14, 17, 17, 0.8) 70%,
+    var(--night-sky) 100%
+  );
+  z-index: 3;
+  pointer-events: none;
+}
+
+.dunesSilhouette {
+  display: none;
+}
+
+.sandDunes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 800 800' fill='none'%3E%3Cpath d='M0 599C200 399 400 699 800 549L800 799L0 799L0 599Z' fill='rgba(191, 164, 90, 0.05)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 800 800' fill='none'%3E%3Cpath d='M0 199C300 299 500 99 800 249L800 0L0 0L0 199Z' fill='rgba(191, 164, 90, 0.05)'/%3E%3C/svg%3E");
+  background-position: bottom center, top center;
+  background-repeat: repeat-x;
+  background-size: 100% 200px, 100% 200px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.arabicSymbols {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60' fill='none'%3E%3Cpath d='M30 10L40 30L30 50L20 30L30 10Z' stroke='rgba(191, 164, 90, 0.1)' fill='none'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40' fill='none'%3E%3Ccircle cx='20' cy='20' r='8' stroke='rgba(191, 164, 90, 0.07)' fill='none'/%3E%3C/svg%3E");
+  background-size: 60px 60px, 40px 40px;
+  background-position: 0% 0%, 30px 30px;
+  z-index: 2;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.egyptianSymbols {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* New style for hieroglyph characters */
+.egyptianHieroglyph {
+  position: absolute;
+  opacity: 0.15;
+  color: var(--sand-light);
+  text-shadow: 0 0 15px rgba(230, 210, 169, 0.4);
+  pointer-events: none;
+  font-size: 40px;
+  font-weight: normal;
+  line-height: 1;
+  transform: translate3d(0, 0, 0); /* Force hardware acceleration */
+  animation: floatHieroglyph 15s ease-in-out infinite;
+  will-change: transform, opacity; /* Signal to browser to optimize */
+}
+
+/* Unique animations for each hieroglyph to distribute processing */
+.egyptianHieroglyph:nth-child(2n) {
+  animation-duration: 18s;
+  animation-delay: 2s;
+}
+
+.egyptianHieroglyph:nth-child(3n) {
+  animation-duration: 20s;
+  animation-delay: 1s;
+}
+
+.egyptianHieroglyph:nth-child(4n) {
+  animation-duration: 17s;
+  animation-delay: 3s;
+}
+
+@keyframes floatHieroglyph {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.15; }
+  25% { transform: translate3d(-10px, -10px, 0) rotate(-5deg); opacity: 0.2; }
+  50% { transform: translate3d(10px, -15px, 0) rotate(5deg); opacity: 0.15; }
+  75% { transform: translate3d(-5px, -5px, 0) rotate(-3deg); opacity: 0.2; }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.15; }
+}
+
+/* Remove all the specific fixed positioning styles for individual SVGs since we're generating dynamically */
+.ankh, .sphinx, .pharaoh, .mummy, .hieroglyphs1, .hieroglyphs2, .egyptian,
+.ankh2, .ankh3, .sphinx2, .pharaoh2, .pharaoh3, .mummy2, .hieroglyphs1_2,
+.hieroglyphs2_2, .egyptian2, .egyptian3 {
+  display: none;
+}
+
+@keyframes float {
+  0% { 
+    transform: translate3d(0, 0, 0) scale(0.5);
+    opacity: 0; 
+  }
+  25% { 
+    transform: translate3d(calc(var(--x-move, -10px)), -25px, 0) scale(0.7);
+    opacity: 0.4; 
+  }
+  75% { 
+    transform: translate3d(calc(var(--x-move, 10px)), -75px, 0) scale(0.9);
+    opacity: 0.4; 
+  }
+  100% { 
+    transform: translate3d(calc(var(--x-move, 0)), calc(var(--y-move, -100px)), 0) scale(1.2);
+    opacity: 0; 
+  }
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: #c29b45;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.particle:nth-child(1) { left: 10%; bottom: 10%; animation: float 15s infinite ease-in-out; }
+.particle:nth-child(2) { left: 20%; bottom: 30%; animation: float 18s infinite ease-in-out 2s; }
+.particle:nth-child(3) { left: 30%; bottom: 20%; animation: float 20s infinite ease-in-out 1s; }
+.particle:nth-child(4) { left: 40%; bottom: 40%; animation: float 17s infinite ease-in-out 3s; }
+.particle:nth-child(5) { left: 50%; bottom: 10%; animation: float 16s infinite ease-in-out 1.5s; }
+.particle:nth-child(6) { left: 60%; bottom: 30%; animation: float 19s infinite ease-in-out 2.5s; }
+.particle:nth-child(7) { left: 70%; bottom: 20%; animation: float 14s infinite ease-in-out 0.5s; }
+.particle:nth-child(8) { left: 80%; bottom: 40%; animation: float 21s infinite ease-in-out 3.5s; }
+.particle:nth-child(9) { left: 90%; bottom: 10%; animation: float 13s infinite ease-in-out 1.2s; }
+.particle:nth-child(10) { left: 5%; bottom: 50%; animation: float 22s infinite ease-in-out 0.8s; }
+.particle:nth-child(11) { left: 15%; bottom: 60%; animation: float 18s infinite ease-in-out 2.8s; }
+.particle:nth-child(12) { left: 25%; bottom: 50%; animation: float 23s infinite ease-in-out 0.3s; }
+.particle:nth-child(13) { left: 65%; bottom: 60%; animation: float 15s infinite ease-in-out 2.3s; }
+.particle:nth-child(14) { left: 75%; bottom: 50%; animation: float 20s infinite ease-in-out 1.3s; }
+.particle:nth-child(15) { left: 85%; bottom: 70%; animation: float 16s infinite ease-in-out 2.1s; }
+
+.container {
+  position: relative;
+  z-index: 3;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.titleContainer {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+  opacity: 0; /* Start hidden */
+}
+
+.titleContainer h2 {
+  font-size: 3.8rem;
+  margin-bottom: 16px;
+  background: linear-gradient(to right, var(--sand-light), #c29b45, var(--sand-dark));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 20px rgba(230, 210, 169, 0.2);
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.titleContainer h2::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--spice), transparent);
+}
+
+.titleContainer p {
+  font-size: 1.2rem;
+  color: var(--sand-dark);
+  max-width: 600px;
+  margin: 25px auto 0;
+  font-style: italic;
+}
+
+.titleContainer.animateIn {
+  animation: fadeInTitle 0.8s ease forwards;
+}
+
+@keyframes fadeInTitle {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.housesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  perspective: 1000px;
+}
+
+.houseCard {
+  position: relative;
+  background: linear-gradient(145deg, 
+    rgba(25, 22, 20, 0.85) 0%,
+    rgba(14, 17, 17, 0.95) 100%
+  );
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), 
+              box-shadow 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+              opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+  border: 1px solid rgba(196, 170, 118, 0.15);
+  opacity: 0;
+  height: 100%;
+  transform: translate3d(0, 0, 0); /* Force hardware acceleration */
+}
+
+.houseCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.4)
+  );
+  z-index: 0;
+}
+
+.houseCard:hover {
+  transform: translate3d(0, -10px, 0) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 
+              0 0 25px rgba(196, 170, 118, 0.3);
+  z-index: 10;
+}
+
+.houseCard.animateIn {
+  opacity: 1;
+  transform: translateY(0);
+  animation-delay: var(--animation-delay, 0s);
+}
+
+.active {
+  transform: perspective(1000px) rotateX(5deg) translateY(-15px) scale(1.05);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 30px var(--house-color);
+  z-index: 20;
+}
+
+.cardGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--house-color);
+  opacity: 0.7;
+  box-shadow: 0 0 20px var(--house-color);
+  z-index: 2;
+}
+
+.cardDecoration {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.01) 0%,
+    transparent 70%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 1;
+  opacity: 0.2;
+}
+
+.houseTop {
+  position: relative;
+  z-index: 1;
+  padding: 25px;
+  text-align: center;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3),
+    transparent
+  );
+  overflow: hidden;
+}
+
+.houseIconContainer {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+.iconCircle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--house-color);
+  opacity: 0.9;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3), 0 0 15px var(--house-color);
+  transition: all 0.4s ease;
+  transform: scale(0.95);
+}
+
+.iconGlow {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--house-color) 0%,
+    transparent 70%
+  );
+  opacity: 0.2;
+  filter: blur(8px);
+  transition: all 0.4s ease;
+}
+
+.houseIcon {
+  color: var(--night-sky);
+  position: relative;
+  z-index: 2;
+  transition: all 0.4s ease;
+}
+
+.houseLogo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+  padding: 5px;
+  transition: all 0.3s ease;
+  transform: translate3d(0, 0, 0);
+  will-change: transform; 
+}
+
+.houseCard:hover .houseLogo {
+  transform: scale(1.1);
+}
+
+.houseName {
+  font-size: 2rem;
+  font-family: 'Cinzel', serif;
+  color: var(--house-color);
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.houseDivider {
+  width: 60px;
+  height: 2px;
+  background-color: var(--house-color);
+  margin: 15px auto;
+  box-shadow: 0 0 8px var(--house-color);
+}
+
+.houseTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  color: var(--sand-light);
+  font-style: italic;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  opacity: 0.8;
+}
+
+.houseBottom {
+  position: relative;
+  z-index: 1;
+  padding: 5px 25px 25px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.houseDescription {
+  margin-bottom: 30px;
+  flex-grow: 1;
+}
+
+.houseDescription p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sand-dark);
+  text-align: center;
+}
+
+.houseStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 25px;
+  position: relative;
+  padding: 15px 5px;
+}
+
+.houseStats::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--house-color), transparent);
+}
+
+.houseStats::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--house-color), transparent);
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--sand-light);
+  font-size: 0.8rem;
+}
+
+.statIcon {
+  color: var(--house-color);
+  opacity: 0.8;
+}
+
+.statValue {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--sand-light);
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.houseActions {
+  text-align: center;
+}
+
+.joinBtn {
+  padding: 10px 28px;
+  background: transparent;
+  border: 1px solid var(--house-color);
+  color: var(--house-color);
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.joinBtn span {
+  position: relative;
+  z-index: 1;
+}
+
+.btnGlow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+  z-index: 0;
+}
+
+.joinBtn:hover {
+  background-color: var(--house-color);
+  color: var(--night-sky);
+  box-shadow: 0 0 15px var(--house-color);
+}
+
+.joinBtn:hover .btnGlow {
+  left: 100%;
+}
+
+@media (max-width: 1200px) {
+  .housesGrid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 900px;
+    margin: 0 auto;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .overlay{
+    height: 5%;
+  }
+  .housesGrid {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+  
+  .titleContainer h2 {
+    font-size: 2.8rem;
+  }
+  
+  .houses {
+    padding: 80px 0 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .houseCard {
+    min-height: auto;
+    height: auto;
+  }
+  
+  .titleContainer h2 {
+    font-size: 2.3rem;
+  }
+  
+  .houseName {
+    font-size: 1.6rem;
+  }
+  
+  .houseTitle {
+    font-size: 0.9rem;
+  }
+}
+
+.sectionConnector {
+  position: absolute;
+  bottom: -180px; 
+  left: 0;
+  width: 100%;
+  height: 280px;
+  background: linear-gradient(to bottom, 
+    var(--night-sky) 0%,
+    rgba(14, 17, 17, 0.9) 20%,
+    rgba(14, 17, 17, 0.7) 40%, 
+    rgba(14, 17, 17, 0.4) 70%,
+    rgba(14, 17, 17, 0.2) 85%,
+    transparent 100%);
+  z-index: 3;
+  pointer-events: none;
+  backdrop-filter: blur(3px);
+}
+
+/* New animation classes to replace GSAP */
+.animateIn {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optimize for smoother animations with hardware acceleration */
+.houseCard,
+.houseLogo,
+.egyptianHieroglyph,
+.particle {
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
