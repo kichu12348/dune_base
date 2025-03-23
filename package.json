@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@cloudflare/next-on-pages": "^1.13.10",
     "gsap": "^3.12.7",
     "lucide-react": "^0.483.0",
     "next": "15.2.3",
