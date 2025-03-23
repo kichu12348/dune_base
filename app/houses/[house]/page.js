@@ -8,13 +8,13 @@ import {
   Award,
   Star,
   Trophy,
-  Zap,
   Medal,
   AlertCircle,
   CheckCircle2,
 } from "lucide-react";
 import gsap from "gsap";
 import { useParams } from "next/navigation";
+import Footer from "@/app/components/Footer/Footer";
 
 // House descriptions for more context
 const houseDescriptions = {
@@ -70,6 +70,78 @@ const hieroglyphs = [
   "𓀕",
   "𓀖",
   "𓀗",
+  "𓀘",
+  "𓀙",
+  "𓀚",
+  "𓀛",
+  "𓀜",
+  "𓀝",
+  "𓀞",
+  "𓀟",
+  "𓀠",
+  "𓀡",
+  "𓀢",
+  "𓀣",
+  "𓁀",
+  "𓁁",
+  "𓁂",
+  "𓁃",
+  "𓁄",
+  "𓁅",
+  "𓁆",
+  "𓁇",
+  "𓁈",
+  "𓁉",
+  "𓁊",
+  "𓁋",
+  "𓁌",
+  "𓁍",
+  "𓁎",
+  "𓁏",
+  "𓁐",
+  "𓁑",
+  "𓁒",
+  "𓁓",
+  "𓁔",
+  "𓁕",
+  "𓁖",
+  "𓁗",
+  "𓂀",
+  "𓂁",
+  "𓂂",
+  "𓂃",
+  "𓂄",
+  "𓂅",
+  "𓂆",
+  "𓂇",
+  "𓂈",
+  "𓂉",
+  "𓂊",
+  "𓂋",
+  "𓂌",
+  "𓂍",
+  "𓂎",
+  "𓂏",
+  "𓂐",
+  "𓂑",
+  "𓂒",
+  "𓂓",
+  "𓂔",
+  "𓂕",
+  "𓂖",
+  "𓂗",
+  "𓃀",
+  "𓃁",
+  "𓃂",
+  "𓃃",
+  "𓃄",
+  "𓃅",
+  "𓃆",
+  "𓃇",
+  "𓃈",
+  "𓃉",
+  "𓃊",
+  "𓃋",
 ];
 
 // Animated score counter component
@@ -135,7 +207,7 @@ const HouseDetails = () => {
     // Create stars
     if (hieroglyphsRef.current) {
       // Create hieroglyphs
-      for (let i = 0; i < 15; i++) {
+      for (let i = 0; i < 20; i++) {
         const glyph = document.createElement("div");
         glyph.classList.add(styles.hieroglyph);
         const randomIndex = Math.floor(Math.random() * hieroglyphs.length);
@@ -175,7 +247,7 @@ const HouseDetails = () => {
         { opacity: 1, y: 0, duration: 1, delay: 0.3, ease: "power2.out" }
       );
     }
-  }, []);
+  }, [houseData]);
 
   useEffect(() => {
     // Map house IDs to their respective properties in the score context
@@ -294,7 +366,7 @@ const HouseDetails = () => {
     const rank =
       Object.entries(score?.totalScores || {})
         .sort((a, b) => b[1] - a[1])
-        .findIndex(([key, value]) => key===houseNameTotal) + 1;
+        .findIndex(([key, value]) => key === houseNameTotal) + 1;
     return rank;
   }, [score]);
 
@@ -401,13 +473,14 @@ const HouseDetails = () => {
                 }}
               />
             ) : (
-
               <span
-              className={styles.rankValue}
-              style={{
-                '--house-color-selected': houseData.color,
-              }}
-              >Ranking: {houseRankings}</span>
+                className={styles.rankValue}
+                style={{
+                  "--house-color-selected": houseData.color,
+                }}
+              >
+                Ranking: {houseRankings}
+              </span>
             )}
           </div>
         </div>
@@ -576,6 +649,7 @@ const HouseDetails = () => {
           </div>
         </div>
       </div>
+      <Footer isNotMain={true} />
     </div>
   );
 };

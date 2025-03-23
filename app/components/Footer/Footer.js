@@ -6,56 +6,55 @@ import styles from "./Footer.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Footer = () => {
+const Footer = ({ isNotMain = false }) => {
   const footerRef = useRef(null);
   const quoteRef = useRef(null);
 
   useEffect(() => {
     const isMobile = window.innerWidth < 768;
-    
+
     const entryTl = gsap.timeline({
       defaults: {
-        ease: "power2.out"
-      }
+        ease: "power2.out",
+      },
     });
-    
+
     entryTl.fromTo(
       quoteRef.current,
-      { 
-        opacity: 0, 
+      {
+        opacity: 0,
         y: 30,
-        willChange: "opacity, transform" 
+        willChange: "opacity, transform",
       },
       {
         opacity: 1,
         y: 0,
         duration: 1.2,
-        clearProps: "willChange" 
+        clearProps: "willChange",
       }
     );
-    
+
     ScrollTrigger.create({
       trigger: quoteRef.current,
       start: "top bottom-=100",
       toggleActions: "play none none reverse",
-      animation: entryTl
+      animation: entryTl,
     });
-    
+
     const socialTl = gsap.timeline({
       scrollTrigger: {
         trigger: `.${styles.socialLinks}`,
         start: "top bottom-=50",
-        toggleActions: "play none none reverse"
-      }
+        toggleActions: "play none none reverse",
+      },
     });
-    
-   
+
     socialTl.fromTo(
       `.${styles.socialIcon}`,
-      { 
-        scale: 0, 
+      {
+        scale: 0,
         opacity: 0,
-        willChange: "transform, opacity" 
+        willChange: "transform, opacity",
       },
       {
         scale: 1,
@@ -63,34 +62,38 @@ const Footer = () => {
         duration: 0.5,
         stagger: 0.1,
         ease: "back.out(1.7)",
-        clearProps: "willChange"
+        clearProps: "willChange",
       }
     );
-    
+
     if (!isMobile) {
       const parallaxElements = [
-        {el: `.${styles.quoteSection}`, y: -15},
-        {el: `.${styles.footerColumns}`, y: -10}
+        { el: `.${styles.quoteSection}`, y: -15 },
+        { el: `.${styles.footerColumns}`, y: -10 },
       ];
-      
+
       const parallaxTl = gsap.timeline({
         scrollTrigger: {
           trigger: footerRef.current,
           start: "top bottom",
           end: "bottom bottom",
-          scrub: true
-        }
+          scrub: true,
+        },
       });
-      parallaxElements.forEach(({el, y}) => {
-        parallaxTl.to(el, {
-          yPercent: y,
-          ease: "none"
-        }, 0); 
+      parallaxElements.forEach(({ el, y }) => {
+        parallaxTl.to(
+          el,
+          {
+            yPercent: y,
+            ease: "none",
+          },
+          0
+        );
       });
     }
-    
+
     return () => {
-      // Clean up 
+      // Clean up
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       if (entryTl) entryTl.kill();
       if (socialTl) socialTl.kill();
@@ -100,20 +103,25 @@ const Footer = () => {
   return (
     <footer className={styles.footer} ref={footerRef}>
       <div className={styles.footerContent}>
-        <div className={styles.quoteSection} ref={quoteRef}>
-          <p className={styles.quote}>
-            &quot;The arts flow like the sacred waters of the Nile, bringing life to
-            those who drink from its wisdom.&quot;
-          </p>
-          <p className={styles.quoteAuthor}>— Teachings of the Great Temple</p>
-        </div>
+        {!isNotMain && (
+          <div className={styles.quoteSection} ref={quoteRef}>
+            <p className={styles.quote}>
+              &quot;The arts flow like the sacred waters of the Nile, bringing
+              life to those who drink from its wisdom.&quot;
+            </p>
+            <p className={styles.quoteAuthor}>
+              — Teachings of the Great Temple
+            </p>
+          </div>
+        )}
 
         <div className={styles.footerColumns}>
           <div className={styles.footerColumn}>
             <h4>UTSAV Festival</h4>
             <p>
-              In a Middle Eastern nation, hidden followers revive the forgotten hero Misaya by hijacking the Elwar Festival. 
-              Seizing the moment, Misaya renames it UTSAV, reclaiming his place in history.
+              In a Middle Eastern nation, hidden followers revive the forgotten
+              hero Misaya by hijacking the Elwar Festival. Seizing the moment,
+              Misaya renames it UTSAV, reclaiming his place in history.
             </p>
           </div>
 
@@ -138,7 +146,9 @@ const Footer = () => {
                 src="/favicon.svg"
                 alt="UTSAV Sacred Symbol"
                 className={styles.footerLogoImage}
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                onClick={() =>
+                  !isNotMain && window.scrollTo({ top: 0, behavior: "smooth" })
+                }
                 loading="lazy"
               />
             </div>
@@ -180,9 +190,7 @@ const Footer = () => {
             </p>
             <p className={styles.credit}>College of Engineering, Chengannur</p>
             <p className={styles.credit}>May the Ankh guide your path.</p>
-            <p className={styles.credit}>
-              Crafted with ❤️ by S4 E
-            </p>
+            <p className={styles.credit}>Crafted with ❤️ by S4 E</p>
           </div>
         </div>
       </div>
